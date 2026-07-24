@@ -1,300 +1,198 @@
 // ==========================================
-// CONFIGURAÇÕES GERAIS
+// Patinhas Pet Shop & Vet — main.js
+// Comportamentos: menu mobile, scroll suave, header com scroll,
+// FAQ acordeão acessível, animações reveal, active link.
+// Refactor: ES6+, ARIA sincronizado, listeners passivos, reduced-motion.
 // ==========================================
 
-// ========== NÚMERO DO WHATSAPP (EDITÁVEL) ==========
-// Formato: código do país + DDD + número (apenas números)
+'use strict';
+
+// ---------- CONFIG ----------
 const WHATSAPP_NUMBER = '5511987654321';
-
-// ========== MENSAGEM PADRÃO WHATSAPP (EDITÁVEL) ==========
 const WHATSAPP_MESSAGE = 'Olá! Gostaria de agendar um serviço para meu pet.';
+const HEADER_SCROLL_THRESHOLD = 100;
+const SECTION_OFFSET = 100;
+
+const prefersReducedMotion = window.matchMedia(
+  '(prefers-reduced-motion: reduce)',
+).matches;
+
+// ---------- HELPERS ----------
+const $ = (sel, ctx = document) => ctx.querySelector(sel);
+const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
 // ==========================================
-// MENU MOBILE - TOGGLE
+// MENU MOBILE
 // ==========================================
-document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.getElementById('menu-toggle');
-    const navMenu = document.getElementById('nav-menu');
-    const navLinks = document.querySelectorAll('.nav-link');
+function initMobileMenu() {
+  const toggle = $('#menu-toggle');
+  const nav = $('#nav-menu');
+  if (!toggle || !nav) return;
 
-    // Abrir/fechar menu mobile
-    if (menuToggle) {
-        menuToggle.addEventListener('click', function() {
-            this.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-        });
-    }
+  const setOpen = (open) => {
+    toggle.classList.toggle('active', open);
+    nav.classList.toggle('active', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute(
+      'aria-label',
+      open ? 'Fechar menu de navegação' : 'Abrir menu de navegação',
+    );
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
 
-    // Fechar menu ao clicar em um link
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            menuToggle.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.style.overflow = '';
-        });
+  toggle.addEventListener('click', () => {
+    setOpen(!nav.classList.contains('active'));
+  });
+
+  // Fechar ao clicar num link do menu
+  $$('.nav-link', nav).forEach((link) =>
+    link.addEventListener('click', () => setOpen(false)),
+  );
+
+  // Fechar ao clicar fora
+  document.addEventListener('click', (e) => {
+    if (!nav.classList.contains('active')) return;
+    if (!nav.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
+  });
+
+  // ESC fecha
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('active')) setOpen(false);
+  });
+}
+
+// ==========================================
+// SCROLL SUAVE (com offset do header)
+// ==========================================
+function initSmoothScroll() {
+  const header = $('.header');
+  $$('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (e) => {
+      const href = anchor.getAttribute('href');
+      if (!href || href === '#') {
+        e.preventDefault();
+        return;
+      }
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      const headerH = header ? header.offsetHeight : 0;
+      window.scrollTo({
+        top: target.offsetTop - headerH,
+        behavior: prefersReducedMotion ? 'auto' : 'smooth',
+      });
     });
+  });
+}
 
-    // Fechar menu ao clicar fora
-    document.addEventListener('click', function(event) {
-        const isClickInsideNav = navMenu.contains(event.target);
-        const isClickOnToggle = menuToggle.contains(event.target);
+// ==========================================
+// HEADER COM ESTILO DINÂMICO NO SCROLL
+// ==========================================
+function initHeaderScroll() {
+  const header = $('#header');
+  if (!header) return;
+  const update = () => header.classList.toggle('scrolled', window.scrollY > HEADER_SCROLL_THRESHOLD);
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+}
 
-        if (!isClickInsideNav && !isClickOnToggle && navMenu.classList.contains('active')) {
-            menuToggle.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.style.overflow = '';
+// ==========================================
+// FAQ ACORDEÃO ACESSÍVEL
+// ==========================================
+function initFAQ() {
+  const items = $$('.faq-item');
+  items.forEach((item) => {
+    const btn = $('.faq-question', item);
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const isOpen = item.classList.contains('active');
+      // Fecha os outros (comportamento pré-existente preservado)
+      items.forEach((other) => {
+        if (other !== item) {
+          other.classList.remove('active');
+          const otherBtn = $('.faq-question', other);
+          if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
         }
+      });
+      item.classList.toggle('active', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
     });
-});
+  });
+}
 
 // ==========================================
-// SCROLL SUAVE PARA ÂNCORAS
+// ANIMAÇÕES DE SCROLL (FADE IN) — desliga se reduced-motion
 // ==========================================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-
-        // Ignora links vazios ou apenas "#"
-        if (href === '#' || href === '') {
-            e.preventDefault();
-            return;
-        }
-
-        const targetElement = document.querySelector(href);
-
-        if (targetElement) {
-            e.preventDefault();
-
-            const headerHeight = document.querySelector('.header').offsetHeight;
-            const targetPosition = targetElement.offsetTop - headerHeight;
-
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
-// ==========================================
-// HEADER - MUDANÇA DE ESTILO NO SCROLL
-// ==========================================
-window.addEventListener('scroll', function() {
-    const header = document.getElementById('header');
-
-    if (window.scrollY > 100) {
-        header.style.padding = '0.5rem 0';
-        header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.12)';
-    } else {
-        header.style.padding = '1rem 0';
-        header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
-    }
-});
-
-// ==========================================
-// FAQ - ACORDEÃO (EXPANDIR/RECOLHER)
-// ==========================================
-const faqItems = document.querySelectorAll('.faq-item');
-
-faqItems.forEach(item => {
-    const question = item.querySelector('.faq-question');
-
-    question.addEventListener('click', function() {
-        // Fecha todos os outros itens
-        faqItems.forEach(otherItem => {
-            if (otherItem !== item && otherItem.classList.contains('active')) {
-                otherItem.classList.remove('active');
-            }
-        });
-
-        // Toggle no item clicado
-        item.classList.toggle('active');
-    });
-});
-
-// ==========================================
-// ANIMAÇÕES DE SCROLL (FADE IN)
-// ==========================================
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
+function initScrollReveal() {
+  const targets = $$(
+    '.servico-card, .destaque-card, .beneficio-item, .depoimento-card, .faq-item, .info-item',
+  );
+  if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+    targets.forEach((el) => el.classList.add('fade-in', 'visible'));
+    return;
+  }
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
         }
-    });
-}, observerOptions);
-
-// Elementos para animar
-const animatedElements = document.querySelectorAll(`
-    .servico-card,
-    .destaque-card,
-    .beneficio-item,
-    .depoimento-card,
-    .faq-item,
-    .info-item
-`);
-
-animatedElements.forEach(element => {
-    element.classList.add('fade-in');
-    observer.observe(element);
-});
-
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -50px 0px' },
+  );
+  targets.forEach((el) => {
+    el.classList.add('fade-in');
+    io.observe(el);
+  });
+}
 
 // ==========================================
-// ACTIVE LINK NO MENU (DESTAQUE SEÇÃO ATUAL)
+// ACTIVE LINK NO MENU (destaque da seção atual)
 // ==========================================
-const sections = document.querySelectorAll('section[id]');
-const navLinksForActive = document.querySelectorAll('.nav-link');
+function initActiveMenuLink() {
+  const sections = $$('section[id]');
+  const links = $$('.nav-link');
+  if (!sections.length || !links.length) return;
 
-function activateMenuLink() {
+  const update = () => {
     const scrollY = window.scrollY;
-
-    sections.forEach(section => {
-        const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - 100;
-        const sectionId = section.getAttribute('id');
-
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            navLinksForActive.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${sectionId}`) {
-                    link.classList.add('active');
-                }
-            });
-        }
-    });
-}
-
-window.addEventListener('scroll', activateMenuLink);
-
-// ==========================================
-// PREVENÇÃO DE LINKS VAZIOS
-// ==========================================
-document.querySelectorAll('a[href="#"]').forEach(link => {
-    link.addEventListener('click', function(e) {
-        // Se o link não tiver uma função específica, previne o comportamento padrão
-        if (!this.getAttribute('onclick')) {
-            e.preventDefault();
-        }
-    });
-});
-
-// ==========================================
-// ANIMAÇÃO DOS CARDS DE SERVIÇOS (HOVER)
-// ==========================================
-const servicoCards = document.querySelectorAll('.servico-card');
-
-servicoCards.forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-10px) scale(1.02)';
-    });
-
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-    });
-});
-
-// ==========================================
-// CONTADOR DE ESTATÍSTICAS (ANIMAÇÃO NUMÉRICA)
-// ==========================================
-function animateCounter(element, target, duration = 2000) {
-    let start = 0;
-    const increment = target / (duration / 16); // 60 FPS
-
-    const timer = setInterval(() => {
-        start += increment;
-        if (start >= target) {
-            element.textContent = target;
-            clearInterval(timer);
-        } else {
-            element.textContent = Math.floor(start);
-        }
-    }, 16);
-}
-
-// Observa os badges do hero para animar quando visíveis
-const badgeObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
-            entry.target.classList.add('animated');
-            // Aqui você pode adicionar animações específicas para os badges
-        }
-    });
-}, { threshold: 0.5 });
-
-document.querySelectorAll('.badge').forEach(badge => {
-    badgeObserver.observe(badge);
-});
-
-// ==========================================
-// LAZY LOADING PARA IMAGENS (SE ADICIONAR)
-// ==========================================
-if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                if (img.dataset.src) {
-                    img.src = img.dataset.src;
-                    img.classList.add('loaded');
-                    observer.unobserve(img);
-                }
-            }
+    sections.forEach((section) => {
+      const top = section.offsetTop - SECTION_OFFSET;
+      const height = section.offsetHeight;
+      const id = section.getAttribute('id');
+      if (scrollY > top && scrollY <= top + height) {
+        links.forEach((link) => {
+          const active = link.getAttribute('href') === `#${id}`;
+          link.classList.toggle('active', active);
+          if (active) link.setAttribute('aria-current', 'true');
+          else link.removeAttribute('aria-current');
         });
+      }
     });
-
-    document.querySelectorAll('img[data-src]').forEach(img => {
-        imageObserver.observe(img);
-    });
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  update();
 }
 
 // ==========================================
-// CONSOLE LOG - INFORMAÇÕES DO SITE
+// BOOTSTRAP
 // ==========================================
-console.log('%c🐾 Patinhas Pet Shop & Vet ', 'background: #4A90E2; color: white; font-size: 20px; padding: 10px;');
-console.log('%cSite desenvolvido com amor para pets e tutores!', 'color: #FF8C42; font-size: 14px;');
-console.log('%c💙 Cuidando do seu melhor amigo 💙', 'color: #66BB6A; font-size: 12px;');
-
-// ==========================================
-// PERFORMANCE - MARCA QUANDO A PÁGINA TERMINA DE CARREGAR
-// ==========================================
-window.addEventListener('load', function() {
-    console.log('%c✓ Página totalmente carregada!', 'color: #66BB6A; font-weight: bold;');
-
-    // Remove qualquer classe de loading se houver
-    document.body.classList.remove('loading');
-});
-
-// ==========================================
-// ACESSIBILIDADE - ESC PARA FECHAR MENU MOBILE
-// ==========================================
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        const menuToggle = document.getElementById('menu-toggle');
-        const navMenu = document.getElementById('nav-menu');
-
-        if (navMenu.classList.contains('active')) {
-            menuToggle.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-    }
-});
-
-// ==========================================
-// SCROLL TO TOP - FUNÇÃO AUXILIAR
-// ==========================================
-function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
+function boot() {
+  initMobileMenu();
+  initSmoothScroll();
+  initHeaderScroll();
+  initFAQ();
+  initScrollReveal();
+  initActiveMenuLink();
 }
 
-// Você pode adicionar um botão "Voltar ao topo" se desejar
-// Exemplo: <button onclick="scrollToTop()" class="scroll-top-btn">↑</button>
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', boot);
+} else {
+  boot();
+}
+
+// Exposto no window para uso opcional (número de WhatsApp e mensagem padrão)
+window.PATINHAS = { WHATSAPP_NUMBER, WHATSAPP_MESSAGE };
