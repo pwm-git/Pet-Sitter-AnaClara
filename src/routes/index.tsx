@@ -337,25 +337,26 @@ function About() {
             Oi, eu sou a Ana Clara
           </h2>
           <p className="text-ink-700">
-            Cresci cercada de cães e gatos e transformei esse amor em profissão. Hoje cuido de
-            pets em Vila Andrade e região há mais de 4 anos, com formação em comportamento animal
-            e primeiros socorros pet.
+            Sou tutora de pets e apaixonada por animais desde sempre. Transformei esse amor
+            em cuidado profissional para os tutores da Vila Andrade que precisam viajar,
+            trabalhar fora ou apenas garantir mais companhia para o pet durante o dia.
           </p>
           <p className="text-ink-700">
             Cada visita minha começa com uma coisa simples: entender o seu pet. Ele é tímido?
-            Come devagar? Odeia trovão? Adora bola? Anoto tudo, respeito o ritmo dele e mando pra
-            você o registro de cada momento.
+            Come devagar? Adora bola? Prefere brincar na área pet ou na rua? Anoto tudo,
+            respeito o ritmo dele e mando pra você o registro de cada momento.
           </p>
           <p className="text-ink-700">
-            Trabalho com poucos tutores por semana justamente pra manter esse cuidado próximo.
-            Se você me contrata, você fala comigo — não com um app, não com uma central.
+            Trabalho com poucos tutores por semana pra manter esse cuidado próximo e
+            personalizado. Se você me contrata, você fala comigo — direto, sempre.
           </p>
           <p className="text-script text-3xl leading-none text-peach-700">Ana Clara</p>
           <ul className="mt-2 flex flex-wrap gap-2 text-sm">
-            <li className="flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 font-medium text-ink-700 shadow-sm"><Sparkles size={14} className="text-sky-600" /> Comportamento animal</li>
-            <li className="flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 font-medium text-ink-700 shadow-sm"><Heart size={14} className="text-peach-700" /> Primeiros socorros pet</li>
-            <li className="flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 font-medium text-ink-700 shadow-sm"><ShieldCheck size={14} className="text-sky-600" /> Identidade verificada</li>
+            <li className="flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 font-medium text-ink-700 shadow-sm"><Heart size={14} className="text-peach-700" /> Tutora de pets</li>
+            <li className="flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 font-medium text-ink-700 shadow-sm"><PawPrint size={14} className="text-sky-600" /> Cuidado individual</li>
+            <li className="flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 font-medium text-ink-700 shadow-sm"><MapPin size={14} className="text-sky-600" /> Vila Andrade — SP</li>
           </ul>
+
         </div>
       </div>
     </section>
