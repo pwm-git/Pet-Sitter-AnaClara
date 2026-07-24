@@ -814,8 +814,6 @@ export const Route = createFileRoute("/")({
       { property: "og:url", content: "/" },
       { property: "og:image", content: HERO_IMAGE },
       { property: "og:image:alt", content: "Cachorro golden retriever sorrindo, atendido na Patinhas Pet Shop" },
-      { property: "og:image:width", content: "1200" },
-      { property: "og:image:height", content: "1200" },
       { property: "og:locale", content: "pt_BR" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Patinhas Pet Shop & Vet" },
