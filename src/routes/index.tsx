@@ -40,7 +40,7 @@ const localBusinessJsonLd = {
 
 
 const faqData = [
-  { q: "Você atende em qual região?", a: "Vila Andrade e bairros vizinhos: Morumbi, Panamby, Real Parque, Jardim Ampére, Jardim Colombo e Vila Suzana. Se estiver por perto, pode perguntar." },
+  { q: "Você atende em qual região?", a: "Atendo exclusivamente o bairro Vila Andrade, em São Paulo. Assim consigo manter agenda enxuta e chegar rápido em cada visita." },
   { q: "Quantas visitas por dia são recomendadas?", a: "Cães em geral 2 a 3 visitas; gatos, 1 a 2. A gente combina de acordo com a rotina do seu pet." },
   { q: "Você fica com as chaves?", a: "Sim, com contrato simples e devolução ao fim do período. Também aceito porteiro, cofre ou fechadura digital." },
   { q: "E se acontecer uma emergência?", a: "Ligo imediatamente pra você e pro veterinário cadastrado. Tenho formação em primeiros socorros pet." },
