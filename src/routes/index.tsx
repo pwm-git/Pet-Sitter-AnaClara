@@ -240,12 +240,13 @@ function Hero() {
             <span className="grid h-8 w-8 place-items-center rounded-full bg-peach-100 text-peach-700">
               <Heart size={16} className="fill-peach-500 text-peach-500" />
             </span>
-            +120 famílias atendidas
+            Apaixonada por pets desde sempre
           </div>
           <div className="absolute -right-2 top-6 flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-ink-900 shadow-[var(--shadow-md)] sm:-right-4">
-            <ShieldCheck size={16} className="text-sky-600" />
-            Identidade verificada
+            <Camera size={16} className="text-sky-600" />
+            Fotos e vídeos a cada visita
           </div>
+
         </div>
       </div>
     </section>
