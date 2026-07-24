@@ -5,11 +5,7 @@ import { CtaPrimary, CtaGhost, SectionEyebrow } from "./ui";
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-10"
-        style={{ background: "var(--gradient-hero)", opacity: 0.35 }}
-      />
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-hero opacity-35" />
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 md:grid-cols-[1.1fr_1fr] md:py-24 md:gap-14">
         <div className="flex flex-col justify-center gap-6">
           <SectionEyebrow>Pet Sitter em Vila Andrade</SectionEyebrow>
