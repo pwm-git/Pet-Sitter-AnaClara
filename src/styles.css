@@ -114,10 +114,13 @@
   --sidebar-ring: var(--sky-400);
 
   --gradient-hero: linear-gradient(135deg, oklch(0.925 0.045 35) 0%, oklch(0.88 0.08 230) 100%);
+  --gradient-cta: linear-gradient(135deg, oklch(0.6 0.16 240) 0%, oklch(0.78 0.13 28) 100%);
+  --whatsapp: oklch(0.65 0.17 155);
   --shadow-sm: 0 2px 8px -4px oklch(0.22 0.03 260 / 0.08);
   --shadow-md: 0 8px 24px -12px oklch(0.22 0.03 260 / 0.15);
   --shadow-lg: 0 20px 50px -20px oklch(0.22 0.03 260 / 0.2);
   --shadow-cta: 0 12px 32px -8px oklch(0.6 0.16 240 / 0.45);
+  --shadow-fab: 0 12px 28px -8px oklch(0.65 0.17 155 / 0.55);
 
   --font-heading: "Outfit", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Figtree", ui-sans-serif, system-ui, sans-serif;
@@ -190,6 +193,42 @@
   font-family: var(--font-script);
 }
 
+@utility shadow-soft {
+  box-shadow: var(--shadow-sm);
+}
+
+@utility shadow-elev {
+  box-shadow: var(--shadow-md);
+}
+
+@utility shadow-lift {
+  box-shadow: var(--shadow-lg);
+}
+
+@utility shadow-cta {
+  box-shadow: var(--shadow-cta);
+}
+
+@utility shadow-fab {
+  box-shadow: var(--shadow-fab);
+}
+
+@utility bg-hero {
+  background: var(--gradient-hero);
+}
+
+@utility bg-cta-gradient {
+  background: var(--gradient-cta);
+}
+
+@utility bg-whatsapp {
+  background: var(--whatsapp);
+}
+
+@utility blob {
+  border-radius: 58% 42% 55% 45% / 50% 55% 45% 50%;
+}
+
 @keyframes fab-pulse {
   0%,
   100% {
@@ -211,6 +250,11 @@
   }
 }
 
+@utility animate-fab-pulse {
+  animation: fab-pulse 2s ease-out infinite;
+}
+
 @utility animate-float-up {
   animation: float-up 0.6s ease-out both;
 }
+

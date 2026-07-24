@@ -20,7 +20,7 @@ export function Faq() {
             return (
               <div
                 key={f.q}
-                className="overflow-hidden rounded-2xl border border-border/60 bg-card shadow-[var(--shadow-sm)]"
+                className="overflow-hidden rounded-2xl border border-border/60 bg-card shadow-soft"
               >
                 <button
                   type="button"

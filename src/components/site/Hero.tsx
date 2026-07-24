@@ -5,11 +5,7 @@ import { CtaPrimary, CtaGhost, SectionEyebrow } from "./ui";
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-10"
-        style={{ background: "var(--gradient-hero)", opacity: 0.35 }}
-      />
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-hero opacity-35" />
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 md:grid-cols-[1.1fr_1fr] md:py-24 md:gap-14">
         <div className="flex flex-col justify-center gap-6">
           <SectionEyebrow>Pet Sitter em Vila Andrade</SectionEyebrow>
@@ -40,10 +36,7 @@ export function Hero() {
           </ul>
         </div>
         <div className="relative">
-          <div
-            className="relative mx-auto aspect-square w-full max-w-md overflow-hidden shadow-[var(--shadow-lg)]"
-            style={{ borderRadius: "58% 42% 55% 45% / 50% 55% 45% 50%" }}
-          >
+          <div className="blob relative mx-auto aspect-square w-full max-w-md overflow-hidden shadow-lift">
             <img
               src={HERO_IMAGE}
               alt="Ana Clara sorrindo enquanto faz carinho em um cachorro golden"
@@ -54,13 +47,13 @@ export function Hero() {
               className="h-full w-full object-cover"
             />
           </div>
-          <div className="absolute -bottom-4 -left-2 flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-ink-900 shadow-[var(--shadow-md)] sm:-left-6">
+          <div className="absolute -bottom-4 -left-2 flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-ink-900 shadow-elev sm:-left-6">
             <span className="grid h-8 w-8 place-items-center rounded-full bg-peach-100 text-peach-700">
               <Heart size={16} className="fill-peach-500 text-peach-500" />
             </span>
             Apaixonada por pets desde sempre
           </div>
-          <div className="absolute -right-2 top-6 flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-ink-900 shadow-[var(--shadow-md)] sm:-right-4">
+          <div className="absolute -right-2 top-6 flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-ink-900 shadow-elev sm:-right-4">
             <Camera size={16} className="text-sky-600" />
             Fotos e vídeos a cada visita
           </div>

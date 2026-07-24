@@ -13,7 +13,7 @@ export function CtaPrimary({
       href={WHATSAPP_URL}
       target="_blank"
       rel="noopener"
-      className={`inline-flex items-center justify-center gap-2 rounded-full bg-sky-600 px-7 py-4 text-base font-semibold text-white shadow-[var(--shadow-cta)] transition-all hover:-translate-y-0.5 hover:brightness-110 active:scale-[0.98] ${className}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-full bg-sky-600 px-7 py-4 text-base font-semibold text-white shadow-cta transition-all hover:-translate-y-0.5 hover:brightness-110 active:scale-[0.98] ${className}`}
     >
       <MessageCircle size={20} strokeWidth={2.25} />
       {children}
