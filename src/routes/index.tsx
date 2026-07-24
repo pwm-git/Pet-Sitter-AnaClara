@@ -1,872 +1,732 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useState } from "react";
+import {
+  Heart, Home, Camera, Pill, Cat, Sprout, PawPrint, MapPin,
+  MessageCircle, CalendarCheck, KeyRound, Bell, Star, ShieldCheck,
+  Phone, Instagram, Clock, ChevronDown, Sparkles, Video, Dog,
+} from "lucide-react";
 
-// URL absoluta da imagem hero (também usada como og:image / twitter:image).
 const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1200&q=80";
+  "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=1200&q=80";
 
-const bodyHtml = `
-    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+const WHATSAPP_URL =
+  "https://wa.me/5511999999999?text=" +
+  encodeURIComponent("Oi Ana! Vim pela página e queria agendar uma visita para meu pet.");
 
-    <!-- ========================================
-         HEADER / MENU NAVEGAÇÃO
-         ======================================== -->
-    <header class="header" id="header" role="banner">
-        <div class="container">
-            <div class="header-content">
-
-                <a href="#home" class="logo" aria-label="Patinhas Pet Shop e Vet - Página inicial">
-                    <span class="logo-icon" aria-hidden="true">🐾</span>
-                    <span class="logo-text">
-                        <span class="logo-name">Patinhas</span>
-                        <span class="logo-tagline">Pet Shop &amp; Vet</span>
-                    </span>
-                </a>
-
-                <nav class="nav" id="nav-menu" aria-label="Navegação principal">
-                    <ul class="nav-list">
-                        <li><a href="#home" class="nav-link">Início</a></li>
-                        <li><a href="#sobre" class="nav-link">Sobre</a></li>
-                        <li><a href="#servicos" class="nav-link">Serviços</a></li>
-                        <li><a href="#depoimentos" class="nav-link">Depoimentos</a></li>
-                        <li><a href="#faq" class="nav-link">FAQ</a></li>
-                        <li><a href="#contato" class="nav-link">Contato</a></li>
-                    </ul>
-                </nav>
-
-                <a href="#contato" class="btn btn-primary btn-header">Agendar Consulta</a>
-
-                <button class="menu-toggle" id="menu-toggle"
-                        aria-label="Abrir menu de navegação"
-                        aria-expanded="false"
-                        aria-controls="nav-menu">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <main id="conteudo">
-
-    <!-- ========================================
-         SEÇÃO HERO / BANNER PRINCIPAL
-         ======================================== -->
-    <section class="hero" id="home" aria-labelledby="hero-title">
-        <div class="hero-background" role="presentation"
-            style="background-image: url('https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=1920&q=80');">
-        </div>
-        <div class="hero-overlay" aria-hidden="true"></div>
-
-        <div class="container">
-            <div class="hero-content">
-
-                <div class="hero-text">
-                    <h1 class="hero-title" id="hero-title">
-                        Cuidando do seu <span class="highlight">melhor amigo</span> com todo amor e carinho
-                    </h1>
-                    <p class="hero-description">
-                        Pet Shop e Clínica Veterinária completa com profissionais especializados, equipamentos
-                        modernos e muito carinho para seu pet!
-                    </p>
-
-                    <div class="hero-buttons">
-                        <a href="#servicos" class="btn btn-primary btn-large">Ver Serviços</a>
-                        <a href="#contato" class="btn btn-secondary btn-large">Agendar Agora</a>
-                    </div>
-
-                    <div class="hero-badges">
-                        <div class="badge">
-                            <span class="badge-icon" aria-hidden="true">⭐</span>
-                            <span class="badge-text">+10 anos de experiência</span>
-                        </div>
-                        <div class="badge">
-                            <span class="badge-icon" aria-hidden="true">❤️</span>
-                            <span class="badge-text">+5000 pets atendidos</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="hero-image">
-                    <div class="hero-image-container">
-                        <img src="${HERO_IMAGE}"
-                             alt="Cachorro golden retriever sorrindo, atendido na Patinhas Pet Shop"
-                             width="600" height="600"
-                             fetchpriority="high"
-                             decoding="async">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================
-         SEÇÃO SOBRE NÓS
-         ======================================== -->
-    <section class="sobre" id="sobre" aria-labelledby="sobre-title">
-        <div class="container">
-            <div class="sobre-content">
-
-                <div class="sobre-image">
-                    <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=600&q=80"
-                         alt="Interior aconchegante do pet shop Patinhas com pets sendo atendidos"
-                         width="600" height="400"
-                         loading="lazy" decoding="async">
-                </div>
-
-                <div class="sobre-text">
-                    <span class="section-label">Sobre Nós</span>
-                    <h2 class="section-title" id="sobre-title">Mais de 10 anos cuidando com amor do seu pet</h2>
-                    <p class="sobre-description">
-                        A <strong>Patinhas Pet Shop &amp; Vet</strong> nasceu do amor incondicional pelos animais. Somos uma
-                        clínica veterinária e pet shop completa, com equipe especializada e equipamentos modernos para
-                        oferecer o melhor atendimento.
-                    </p>
-                    <p class="sobre-description">
-                        Nossa missão é proporcionar saúde, bem-estar e felicidade para seu melhor amigo, com atendimento
-                        humanizado e serviços de excelência.
-                    </p>
-
-                    <ul class="sobre-list">
-                        <li>
-                            <span class="list-icon" aria-hidden="true">✓</span>
-                            <span>Veterinários especializados e experientes</span>
-                        </li>
-                        <li>
-                            <span class="list-icon" aria-hidden="true">✓</span>
-                            <span>Equipamentos modernos e tecnologia de ponta</span>
-                        </li>
-                        <li>
-                            <span class="list-icon" aria-hidden="true">✓</span>
-                            <span>Atendimento 24 horas para emergências</span>
-                        </li>
-                        <li>
-                            <span class="list-icon" aria-hidden="true">✓</span>
-                            <span>Ambiente confortável e acolhedor</span>
-                        </li>
-                    </ul>
-
-                    <a href="#contato" class="btn btn-primary">Entre em Contato</a>
-                </div>
-            </div>
-
-            <div class="galeria" role="list" aria-label="Galeria de fotos">
-                <figure class="galeria-item galeria-item-large" role="listitem">
-                    <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&q=80"
-                         alt="Grupo de cachorros felizes brincando juntos"
-                         width="800" height="600"
-                         loading="lazy" decoding="async">
-                </figure>
-                <figure class="galeria-item" role="listitem">
-                    <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=400&q=80"
-                         alt="Cachorro recebendo tosa profissional"
-                         width="400" height="300"
-                         loading="lazy" decoding="async">
-                </figure>
-                <figure class="galeria-item" role="listitem">
-                    <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=400&q=80"
-                         alt="Bulldog com expressão simpática"
-                         width="400" height="300"
-                         loading="lazy" decoding="async">
-                </figure>
-                <figure class="galeria-item" role="listitem">
-                    <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&q=80"
-                         alt="Gato descansando tranquilamente"
-                         width="400" height="300"
-                         loading="lazy" decoding="async">
-                </figure>
-                <figure class="galeria-item" role="listitem">
-                    <img src="https://images.unsplash.com/photo-1601758124510-52d02ddb7cbd?w=400&q=80"
-                         alt="Veterinário cuidando de um pet"
-                         width="400" height="300"
-                         loading="lazy" decoding="async">
-                </figure>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================
-         SEÇÃO SERVIÇOS
-         ======================================== -->
-    <section class="servicos" id="servicos" aria-labelledby="servicos-title">
-        <div class="container">
-
-            <div class="section-header">
-                <span class="section-label">Nossos Serviços</span>
-                <h2 class="section-title" id="servicos-title">Tudo que seu pet precisa em um só lugar</h2>
-                <p class="section-description">
-                    Oferecemos serviços completos de pet shop e clínica veterinária para cuidar da saúde e bem-estar do
-                    seu melhor amigo.
-                </p>
-            </div>
-
-            <div class="servicos-grid">
-
-                <article class="servico-card">
-                    <div class="servico-image">
-                        <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=400&q=80"
-                             alt="Cachorro tomando banho no serviço de banho e tosa"
-                             width="400" height="300"
-                             loading="lazy" decoding="async">
-                    </div>
-                    <div class="servico-icon" aria-hidden="true">🛁</div>
-                    <h3 class="servico-title">Banho e Tosa</h3>
-                    <p class="servico-description">
-                        Banho completo, tosa higiênica e estética com produtos de qualidade e profissionais
-                        especializados.
-                    </p>
-                </article>
-
-                <article class="servico-card">
-                    <div class="servico-image">
-                        <img src="https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?w=400&q=80"
-                             alt="Veterinária examinando um cachorro em consulta"
-                             width="400" height="300"
-                             loading="lazy" decoding="async">
-                    </div>
-                    <div class="servico-icon" aria-hidden="true">🩺</div>
-                    <h3 class="servico-title">Consultas Veterinárias</h3>
-                    <p class="servico-description">
-                        Atendimento clínico geral com veterinários experientes para cuidar da saúde do seu pet.
-                    </p>
-                </article>
-
-                <article class="servico-card">
-                    <div class="servico-image">
-                        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400&q=80"
-                             alt="Prateleira com produtos e acessórios para pets"
-                             width="400" height="300"
-                             loading="lazy" decoding="async">
-                    </div>
-                    <div class="servico-icon" aria-hidden="true">💉</div>
-                    <h3 class="servico-title">Produtos Pet</h3>
-                    <p class="servico-description">
-                        Pet shop completo com produtos de higiene, acessórios e tudo para o bem-estar do seu pet.
-                    </p>
-                </article>
-
-                <article class="servico-card">
-                    <div class="servico-image">
-                        <img src="https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?w=400&q=80"
-                             alt="Rações premium selecionadas para cães e gatos"
-                             width="400" height="300"
-                             loading="lazy" decoding="async">
-                    </div>
-                    <div class="servico-icon" aria-hidden="true">⚕️</div>
-                    <h3 class="servico-title">Rações Premium</h3>
-                    <p class="servico-description">
-                        As melhores marcas de ração e alimentação especial para todas as fases da vida do seu pet.
-                    </p>
-                </article>
-
-                <article class="servico-card">
-                    <div class="servico-image">
-                        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&q=80"
-                             alt="Pets confortáveis hospedados no hotel pet"
-                             width="400" height="300"
-                             loading="lazy" decoding="async">
-                    </div>
-                    <div class="servico-icon" aria-hidden="true">🏨</div>
-                    <h3 class="servico-title">Hotel Pet</h3>
-                    <p class="servico-description">
-                        Hospedagem com conforto e segurança para seu pet enquanto você viaja tranquilo.
-                    </p>
-                </article>
-
-                <article class="servico-card">
-                    <div class="servico-image">
-                        <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&q=80"
-                             alt="Cachorro em sessão de adestramento profissional"
-                             width="400" height="300"
-                             loading="lazy" decoding="async">
-                    </div>
-                    <div class="servico-icon" aria-hidden="true">🛍️</div>
-                    <h3 class="servico-title">Adestramento</h3>
-                    <p class="servico-description">
-                        Treinamento profissional para educação, comportamento e socialização do seu pet.
-                    </p>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================
-         SEÇÃO DESTAQUES / DIFERENCIAIS
-         ======================================== -->
-    <section class="destaques" aria-labelledby="destaques-title">
-        <div class="container">
-
-            <div class="section-header">
-                <span class="section-label">Por Que Escolher a Patinhas?</span>
-                <h2 class="section-title" id="destaques-title">Nossos Diferenciais</h2>
-            </div>
-
-            <div class="destaques-grid">
-
-                <article class="destaque-card">
-                    <div class="destaque-image">
-                        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&q=80"
-                             alt="Equipe especializada cuidando de pets felizes"
-                             width="400" height="300"
-                             loading="lazy" decoding="async">
-                    </div>
-                    <div class="destaque-number" aria-hidden="true">01</div>
-                    <h3 class="destaque-title">Equipe Especializada</h3>
-                    <p class="destaque-description">
-                        Veterinários formados e atualizados com as melhores práticas da medicina veterinária.
-                    </p>
-                </article>
-
-                <article class="destaque-card">
-                    <div class="destaque-image">
-                        <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=400&q=80"
-                             alt="Atendimento 24 horas para emergências pet"
-                             width="400" height="300"
-                             loading="lazy" decoding="async">
-                    </div>
-                    <div class="destaque-number" aria-hidden="true">02</div>
-                    <h3 class="destaque-title">Atendimento 24h</h3>
-                    <p class="destaque-description">
-                        Pronto atendimento veterinário disponível 24 horas para emergências.
-                    </p>
-                </article>
-
-                <article class="destaque-card">
-                    <div class="destaque-image">
-                        <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=400&q=80"
-                             alt="Equipamentos veterinários modernos"
-                             width="400" height="300"
-                             loading="lazy" decoding="async">
-                    </div>
-                    <div class="destaque-number" aria-hidden="true">03</div>
-                    <h3 class="destaque-title">Tecnologia Moderna</h3>
-                    <p class="destaque-description">
-                        Equipamentos de última geração para diagnósticos precisos e tratamentos eficazes.
-                    </p>
-                </article>
-
-                <article class="destaque-card">
-                    <div class="destaque-image">
-                        <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&q=80"
-                             alt="Ambiente acolhedor para pets e tutores"
-                             width="400" height="300"
-                             loading="lazy" decoding="async">
-                    </div>
-                    <div class="destaque-number" aria-hidden="true">04</div>
-                    <h3 class="destaque-title">Ambiente Acolhedor</h3>
-                    <p class="destaque-description">
-                        Espaço projetado para o conforto dos pets e tranquilidade dos tutores.
-                    </p>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================
-         SEÇÃO BENEFÍCIOS
-         ======================================== -->
-    <section class="beneficios" aria-labelledby="beneficios-title">
-        <div class="container">
-            <div class="beneficios-content">
-
-                <div class="beneficios-text">
-                    <span class="section-label">Benefícios</span>
-                    <h2 class="section-title" id="beneficios-title">Vantagens de cuidar do seu pet conosco</h2>
-
-                    <div class="beneficios-list">
-                        <div class="beneficio-item">
-                            <div class="beneficio-icon" aria-hidden="true">🎯</div>
-                            <div class="beneficio-text">
-                                <h3>Planos de Saúde Pet</h3>
-                                <p>Consultas ilimitadas, descontos em serviços e muito mais com nossos planos.</p>
-                            </div>
-                        </div>
-
-                        <div class="beneficio-item">
-                            <div class="beneficio-icon" aria-hidden="true">📱</div>
-                            <div class="beneficio-text">
-                                <h3>Agendamento Online</h3>
-                                <p>Agende consultas e serviços pelo WhatsApp de forma rápida e prática.</p>
-                            </div>
-                        </div>
-
-                        <div class="beneficio-item">
-                            <div class="beneficio-icon" aria-hidden="true">🚗</div>
-                            <div class="beneficio-text">
-                                <h3>Estacionamento Grátis</h3>
-                                <p>Estacionamento amplo e seguro para sua comodidade.</p>
-                            </div>
-                        </div>
-
-                        <div class="beneficio-item">
-                            <div class="beneficio-icon" aria-hidden="true">💳</div>
-                            <div class="beneficio-text">
-                                <h3>Parcelamento Facilitado</h3>
-                                <p>Aceitamos todas as formas de pagamento com parcelamento em até 12x.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="beneficios-image">
-                    <div class="beneficios-image-placeholder">
-                        <span class="beneficios-emoji" aria-hidden="true">🐶💙</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================
-         SEÇÃO DEPOIMENTOS
-         ======================================== -->
-    <section class="depoimentos" id="depoimentos" aria-labelledby="depoimentos-title">
-        <div class="container">
-
-            <div class="section-header">
-                <span class="section-label">Depoimentos</span>
-                <h2 class="section-title" id="depoimentos-title">O que dizem nossos clientes</h2>
-                <p class="section-description">
-                    A satisfação dos nossos clientes e o bem-estar dos pets são nossa maior recompensa.
-                </p>
-            </div>
-
-            <div class="depoimentos-grid">
-
-                <article class="depoimento-card">
-                    <div class="depoimento-rating" role="img" aria-label="Avaliação: 5 de 5 estrelas">
-                        <span aria-hidden="true">⭐⭐⭐⭐⭐</span>
-                    </div>
-                    <p class="depoimento-text">
-                        &ldquo;Excelente atendimento! Minha cachorrinha ficou linda depois do banho e tosa. A equipe é super
-                        atenciosa e cuidadosa. Super recomendo!&rdquo;
-                    </p>
-                    <div class="depoimento-author">
-                        <div class="author-avatar">
-                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80"
-                                 alt="Retrato de Maria Silva"
-                                 width="80" height="80"
-                                 loading="lazy" decoding="async">
-                        </div>
-                        <div class="author-info">
-                            <h3 class="author-name">Maria Silva</h3>
-                            <p class="author-pet">Tutora da Luna</p>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="depoimento-card">
-                    <div class="depoimento-rating" role="img" aria-label="Avaliação: 5 de 5 estrelas">
-                        <span aria-hidden="true">⭐⭐⭐⭐⭐</span>
-                    </div>
-                    <p class="depoimento-text">
-                        &ldquo;Profissionais extremamente competentes! O Dr. João salvou meu gato com um diagnóstico preciso e
-                        tratamento eficaz. Gratidão eterna!&rdquo;
-                    </p>
-                    <div class="depoimento-author">
-                        <div class="author-avatar">
-                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80"
-                                 alt="Retrato de Carlos Oliveira"
-                                 width="80" height="80"
-                                 loading="lazy" decoding="async">
-                        </div>
-                        <div class="author-info">
-                            <h3 class="author-name">Carlos Oliveira</h3>
-                            <p class="author-pet">Tutor do Miau</p>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="depoimento-card">
-                    <div class="depoimento-rating" role="img" aria-label="Avaliação: 5 de 5 estrelas">
-                        <span aria-hidden="true">⭐⭐⭐⭐⭐</span>
-                    </div>
-                    <p class="depoimento-text">
-                        &ldquo;O hotel pet é maravilhoso! Fiquei tranquila durante minha viagem sabendo que meu dog estava bem
-                        cuidado. Ele voltou feliz e saudável!&rdquo;
-                    </p>
-                    <div class="depoimento-author">
-                        <div class="author-avatar">
-                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=80"
-                                 alt="Retrato de Ana Paula"
-                                 width="80" height="80"
-                                 loading="lazy" decoding="async">
-                        </div>
-                        <div class="author-info">
-                            <h3 class="author-name">Ana Paula</h3>
-                            <p class="author-pet">Tutora do Thor</p>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================
-         SEÇÃO FAQ (PERGUNTAS FREQUENTES)
-         ======================================== -->
-    <section class="faq" id="faq" aria-labelledby="faq-title">
-        <div class="container">
-
-            <div class="section-header">
-                <span class="section-label">Perguntas Frequentes</span>
-                <h2 class="section-title" id="faq-title">Tire suas dúvidas</h2>
-            </div>
-
-            <div class="faq-list">
-
-                <div class="faq-item">
-                    <h3>
-                        <button class="faq-question" aria-expanded="false" aria-controls="faq-panel-1" id="faq-btn-1">
-                            <span>Quais são os horários de atendimento?</span>
-                            <span class="faq-icon" aria-hidden="true">+</span>
-                        </button>
-                    </h3>
-                    <div class="faq-answer" id="faq-panel-1" role="region" aria-labelledby="faq-btn-1">
-                        <p>Atendemos de segunda a sexta das 8h às 20h, sábados das 8h às 18h e domingos das 9h às 13h.
-                            Para emergências, temos pronto atendimento 24 horas todos os dias.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <h3>
-                        <button class="faq-question" aria-expanded="false" aria-controls="faq-panel-2" id="faq-btn-2">
-                            <span>É necessário agendar horário para banho e tosa?</span>
-                            <span class="faq-icon" aria-hidden="true">+</span>
-                        </button>
-                    </h3>
-                    <div class="faq-answer" id="faq-panel-2" role="region" aria-labelledby="faq-btn-2">
-                        <p>Sim, recomendamos agendar com antecedência para garantir o horário de sua preferência. Você
-                            pode agendar pelo WhatsApp, telefone ou pessoalmente.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <h3>
-                        <button class="faq-question" aria-expanded="false" aria-controls="faq-panel-3" id="faq-btn-3">
-                            <span>Quais vacinas são oferecidas?</span>
-                            <span class="faq-icon" aria-hidden="true">+</span>
-                        </button>
-                    </h3>
-                    <div class="faq-answer" id="faq-panel-3" role="region" aria-labelledby="faq-btn-3">
-                        <p>Oferecemos todas as vacinas recomendadas para cães e gatos: V8, V10, antirrábica, giárdia,
-                            gripe canina, tríplice felina, quádrupla felina, entre outras.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <h3>
-                        <button class="faq-question" aria-expanded="false" aria-controls="faq-panel-4" id="faq-btn-4">
-                            <span>Como funciona o hotel pet?</span>
-                            <span class="faq-icon" aria-hidden="true">+</span>
-                        </button>
-                    </h3>
-                    <div class="faq-answer" id="faq-panel-4" role="region" aria-labelledby="faq-btn-4">
-                        <p>O hotel pet oferece hospedagem com todo conforto e segurança. Fornecemos alimentação,
-                            passeios, brincadeiras e cuidados veterinários se necessário. É necessário apresentar
-                            carteira de vacinação atualizada.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <h3>
-                        <button class="faq-question" aria-expanded="false" aria-controls="faq-panel-5" id="faq-btn-5">
-                            <span>Aceitam plano de saúde pet?</span>
-                            <span class="faq-icon" aria-hidden="true">+</span>
-                        </button>
-                    </h3>
-                    <div class="faq-answer" id="faq-panel-5" role="region" aria-labelledby="faq-btn-5">
-                        <p>Sim, aceitamos os principais planos de saúde pet do mercado. Também oferecemos nossos
-                            próprios planos com consultas ilimitadas e descontos em serviços.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <h3>
-                        <button class="faq-question" aria-expanded="false" aria-controls="faq-panel-6" id="faq-btn-6">
-                            <span>Quais formas de pagamento são aceitas?</span>
-                            <span class="faq-icon" aria-hidden="true">+</span>
-                        </button>
-                    </h3>
-                    <div class="faq-answer" id="faq-panel-6" role="region" aria-labelledby="faq-btn-6">
-                        <p>Aceitamos dinheiro, PIX, cartões de débito e crédito (parcelamento em até 12x). Para
-                            cirurgias e procedimentos de maior valor, oferecemos condições especiais.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================
-         SEÇÃO CONTATO
-         ======================================== -->
-    <section class="contato" id="contato" aria-labelledby="contato-title">
-        <div class="container">
-
-            <div class="section-header">
-                <span class="section-label">Contato</span>
-                <h2 class="section-title" id="contato-title">Entre em contato conosco</h2>
-                <p class="section-description">
-                    Estamos prontos para cuidar do seu pet. Agende uma visita ou tire suas dúvidas!
-                </p>
-            </div>
-
-            <div class="contato-content">
-
-                <address class="contato-info">
-
-                    <div class="info-item">
-                        <div class="info-icon" aria-hidden="true">📍</div>
-                        <div class="info-text">
-                            <h3>Endereço</h3>
-                            <p>Rua das Patinhas, 123<br>Centro - São Paulo/SP<br>CEP: 01234-567</p>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-icon" aria-hidden="true">📞</div>
-                        <div class="info-text">
-                            <h3>Telefone</h3>
-                            <p>
-                                <a href="tel:+5511987654321">(11) 98765-4321</a><br>
-                                <a href="tel:+551134567890">(11) 3456-7890</a>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-icon" aria-hidden="true">📧</div>
-                        <div class="info-text">
-                            <h3>E-mail</h3>
-                            <p>
-                                <a href="mailto:contato@patinhaspet.com.br">contato@patinhaspet.com.br</a><br>
-                                <a href="mailto:atendimento@patinhaspet.com.br">atendimento@patinhaspet.com.br</a>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-icon" aria-hidden="true">🕐</div>
-                        <div class="info-text">
-                            <h3>Horário</h3>
-                            <p>Seg-Sex: 8h às 20h<br>Sábado: 8h às 18h<br>Domingo: 9h às 13h<br><strong>Emergência:
-                                    24h</strong></p>
-                        </div>
-                    </div>
-
-                    <div class="social-links">
-                        <a href="#" class="social-link" aria-label="Siga no Facebook" rel="noopener"><span aria-hidden="true">📘</span></a>
-                        <a href="#" class="social-link" aria-label="Siga no Instagram" rel="noopener"><span aria-hidden="true">📷</span></a>
-                        <a href="#" class="social-link" aria-label="Fale conosco no WhatsApp" rel="noopener"><span aria-hidden="true">💬</span></a>
-                    </div>
-                </address>
-
-            </div>
-        </div>
-    </section>
-
-    </main>
-
-    <!-- ========================================
-         FOOTER / RODAPÉ
-         ======================================== -->
-    <footer class="footer" role="contentinfo">
-        <div class="container">
-            <div class="footer-content">
-
-                <div class="footer-col">
-                    <div class="footer-logo">
-                        <span class="logo-icon" aria-hidden="true">🐾</span>
-                        <span class="logo-text">
-                            <span class="logo-name">Patinhas</span>
-                            <span class="logo-tagline">Pet Shop &amp; Vet</span>
-                        </span>
-                    </div>
-                    <p class="footer-description">
-                        Cuidando do seu melhor amigo com amor, carinho e profissionalismo há mais de 10 anos.
-                    </p>
-                </div>
-
-                <nav class="footer-col" aria-label="Links rápidos">
-                    <h3 class="footer-title">Links Rápidos</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Início</a></li>
-                        <li><a href="#sobre">Sobre</a></li>
-                        <li><a href="#servicos">Serviços</a></li>
-                        <li><a href="#depoimentos">Depoimentos</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                        <li><a href="#contato">Contato</a></li>
-                    </ul>
-                </nav>
-
-                <nav class="footer-col" aria-label="Serviços oferecidos">
-                    <h3 class="footer-title">Serviços</h3>
-                    <ul class="footer-links">
-                        <li><a href="#servicos">Banho e Tosa</a></li>
-                        <li><a href="#servicos">Consultas Veterinárias</a></li>
-                        <li><a href="#servicos">Vacinação</a></li>
-                        <li><a href="#servicos">Cirurgias</a></li>
-                        <li><a href="#servicos">Hotel Pet</a></li>
-                        <li><a href="#servicos">Pet Shop</a></li>
-                    </ul>
-                </nav>
-
-                <div class="footer-col">
-                    <h3 class="footer-title">Contato</h3>
-                    <ul class="footer-contact">
-                        <li><span aria-hidden="true">📍</span> Rua das Patinhas, 123<br>Centro - São Paulo/SP</li>
-                        <li><span aria-hidden="true">📞</span> <a href="tel:+5511987654321">(11) 98765-4321</a></li>
-                        <li><span aria-hidden="true">📧</span> <a href="mailto:contato@patinhaspet.com.br">contato@patinhaspet.com.br</a></li>
-                        <li><span aria-hidden="true">🕐</span> Seg-Sex: 8h-20h<br>Emergência: 24h</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2024 Patinhas Pet Shop &amp; Vet. Todos os direitos reservados.</p>
-                <p>Desenvolvido com <span aria-label="amor">💙</span> para pets e tutores</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Botão flutuante WhatsApp (Passo D) -->
-    <a id="whatsapp-fab"
-       class="whatsapp-fab"
-       href="https://wa.me/5511987654321?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20servi%C3%A7o%20para%20meu%20pet."
-       target="_blank"
-       rel="noopener"
-       aria-label="Falar no WhatsApp">
-        <span aria-hidden="true">💬</span>
-    </a>
-
-    <iframe src="https://app.gptmaker.ai/widget/3EB1EF96AD98C38C824B36EC3DEDCDF8/iframe"
-            title="Assistente virtual Patinhas"
-            width="100%"
-            style="height: 100%; min-height: 700px"
-            allow="microphone;"
-            loading="lazy"
-            frameborder="0">
-    </iframe>
-`;
-
-// ---- JSON-LD estruturado (SEO local + FAQ) ----
 const localBusinessJsonLd = {
   "@context": "https://schema.org",
-  "@type": "VeterinaryCare",
-  "@id": "#patinhas-petshop",
-  name: "Patinhas Pet Shop & Vet",
+  "@type": ["LocalBusiness", "AnimalShelter"],
+  "@id": "#ana-clara-pet-sitter",
+  name: "Ana Clara Pet Sitter",
   description:
-    "Pet Shop e Clínica Veterinária completa: banho e tosa, consultas, vacinação, cirurgias, hotel pet e produtos.",
+    "Pet Sitter em Vila Andrade e região. Visitas personalizadas para cães e gatos, passeios, alimentação, medicação, fotos e vídeos em tempo real.",
   image: HERO_IMAGE,
-  telephone: "+55-11-98765-4321",
-  email: "contato@patinhaspet.com.br",
+  telephone: "+55-11-99999-9999",
   priceRange: "$$",
-  areaServed: {
-    "@type": "City",
-    name: "São Paulo",
-  },
+  areaServed: [
+    { "@type": "City", name: "São Paulo" },
+    "Vila Andrade", "Morumbi", "Panamby", "Real Parque",
+    "Jardim Ampére", "Jardim Colombo", "Vila Suzana",
+  ],
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Rua das Patinhas, 123",
-    addressLocality: "São Paulo",
+    addressLocality: "Vila Andrade",
     addressRegion: "SP",
-    postalCode: "01234-567",
     addressCountry: "BR",
   },
   openingHoursSpecification: [
-    { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "08:00", closes: "20:00" },
-    { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "08:00", closes: "18:00" },
-    { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "09:00", closes: "13:00" },
+    { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], opens: "08:00", closes: "20:00" },
   ],
+  sameAs: ["https://instagram.com/anaclara.petsitter"],
 };
+
+const faqData = [
+  { q: "Você atende em qual região?", a: "Vila Andrade e bairros vizinhos: Morumbi, Panamby, Real Parque, Jardim Ampére, Jardim Colombo e Vila Suzana. Se estiver por perto, pode perguntar." },
+  { q: "Quantas visitas por dia são recomendadas?", a: "Cães em geral 2 a 3 visitas; gatos, 1 a 2. A gente combina de acordo com a rotina do seu pet." },
+  { q: "Você fica com as chaves?", a: "Sim, com contrato simples e devolução ao fim do período. Também aceito porteiro, cofre ou fechadura digital." },
+  { q: "E se acontecer uma emergência?", a: "Ligo imediatamente pra você e pro veterinário cadastrado. Tenho formação em primeiros socorros pet." },
+  { q: "Como recebo as atualizações?", a: "Por WhatsApp, com fotos e vídeos em cada visita, mais um resumo escrito ao final." },
+  { q: "Você aplica medicação?", a: "Sim — via oral, tópica, colírio e insulina, com foto de cada aplicação." },
+  { q: "Quanto custa?", a: "O valor depende do número de visitas, tempo e do seu bairro. Me chame no WhatsApp que envio o orçamento em minutos." },
+  { q: "E se meu pet não gostar de você?", a: "A primeira conversa é justamente pra isso. Se não rolar química, sem problema — não contratamos." },
+];
 
 const faqJsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
-    { "@type": "Question", name: "Quais são os horários de atendimento?", acceptedAnswer: { "@type": "Answer", text: "Atendemos de segunda a sexta das 8h às 20h, sábados das 8h às 18h e domingos das 9h às 13h. Para emergências, temos pronto atendimento 24 horas todos os dias." } },
-    { "@type": "Question", name: "É necessário agendar horário para banho e tosa?", acceptedAnswer: { "@type": "Answer", text: "Sim, recomendamos agendar com antecedência para garantir o horário de sua preferência. Você pode agendar pelo WhatsApp, telefone ou pessoalmente." } },
-    { "@type": "Question", name: "Quais vacinas são oferecidas?", acceptedAnswer: { "@type": "Answer", text: "Oferecemos todas as vacinas recomendadas para cães e gatos: V8, V10, antirrábica, giárdia, gripe canina, tríplice felina, quádrupla felina, entre outras." } },
-    { "@type": "Question", name: "Como funciona o hotel pet?", acceptedAnswer: { "@type": "Answer", text: "O hotel pet oferece hospedagem com todo conforto e segurança. Fornecemos alimentação, passeios, brincadeiras e cuidados veterinários se necessário. É necessário apresentar carteira de vacinação atualizada." } },
-    { "@type": "Question", name: "Aceitam plano de saúde pet?", acceptedAnswer: { "@type": "Answer", text: "Sim, aceitamos os principais planos de saúde pet do mercado. Também oferecemos nossos próprios planos com consultas ilimitadas e descontos em serviços." } },
-    { "@type": "Question", name: "Quais formas de pagamento são aceitas?", acceptedAnswer: { "@type": "Answer", text: "Aceitamos dinheiro, PIX, cartões de débito e crédito (parcelamento em até 12x). Para cirurgias e procedimentos de maior valor, oferecemos condições especiais." } },
-  ],
+  mainEntity: faqData.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
 };
 
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Patinhas Pet Shop & Vet — Cuidando do seu melhor amigo com amor" },
-      {
-        name: "description",
-        content:
-          "Pet Shop e Clínica Veterinária completa em São Paulo. Banho e tosa, consultas, vacinação, cirurgias, hotel pet e produtos. Agende pelo WhatsApp!",
-      },
-      { property: "og:title", content: "Patinhas Pet Shop & Vet" },
-      {
-        property: "og:description",
-        content:
-          "Pet Shop e Clínica Veterinária completa: banho e tosa, consultas, hotel pet e muito mais.",
-      },
+      { title: "Pet Sitter em Vila Andrade | Ana Clara — Cuidado em Casa" },
+      { name: "description", content: "Pet Sitter em Vila Andrade e região. Visitas, passeios, alimentação e medicação com fotos e vídeos em tempo real. Agende no WhatsApp." },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: "Pet Sitter em Vila Andrade | Ana Clara" },
+      { property: "og:description", content: "Cuidado individual, na sua casa, com fotos e vídeos em tempo real. Vila Andrade e região." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
       { property: "og:image", content: HERO_IMAGE },
-      { property: "og:image:alt", content: "Cachorro golden retriever sorrindo, atendido na Patinhas Pet Shop" },
-      { property: "og:locale", content: "pt_BR" },
+      { property: "og:image:alt", content: "Ana Clara sorrindo enquanto faz carinho em um cachorro golden" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Patinhas Pet Shop & Vet" },
-      {
-        name: "twitter:description",
-        content:
-          "Pet Shop e Clínica Veterinária completa: banho e tosa, consultas, hotel pet e muito mais.",
-      },
+      { name: "twitter:title", content: "Pet Sitter em Vila Andrade | Ana Clara" },
+      { name: "twitter:description", content: "Visitas, passeios, alimentação e medicação com fotos e vídeos em tempo real." },
       { name: "twitter:image", content: HERO_IMAGE },
-      { name: "twitter:image:alt", content: "Cachorro golden retriever sorrindo, atendido na Patinhas Pet Shop" },
-      { name: "theme-color", content: "#2196f3" },
-      { name: "robots", content: "index, follow" },
     ],
     links: [
       { rel: "canonical", href: "/" },
-      { rel: "stylesheet", href: "/assets/css/style.css" },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "" },
       { rel: "preconnect", href: "https://images.unsplash.com", crossOrigin: "" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Fredoka:wght@500;600;700&display=swap",
-      },
-      {
-        rel: "preload",
-        as: "image",
-        href: HERO_IMAGE,
-        fetchpriority: "high",
-      } as unknown as Record<string, string>,
+      { rel: "preload", as: "image", href: HERO_IMAGE, fetchpriority: "high" } as unknown as Record<string, string>,
     ],
     scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify(localBusinessJsonLd),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify(faqJsonLd),
-      },
+      { type: "application/ld+json", children: JSON.stringify(localBusinessJsonLd) },
+      { type: "application/ld+json", children: JSON.stringify(faqJsonLd) },
     ],
   }),
 });
 
-function Index() {
-  useEffect(() => {
-    const s = document.createElement("script");
-    s.src = "/assets/js/main.js";
-    s.defer = true;
-    document.body.appendChild(s);
-    return () => {
-      document.body.removeChild(s);
-    };
-  }, []);
+/* ---------- Reusable pieces ---------- */
 
-  return <div dangerouslySetInnerHTML={{ __html: bodyHtml }} />;
+function CtaPrimary({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <a
+      href={WHATSAPP_URL}
+      target="_blank"
+      rel="noopener"
+      className={`inline-flex items-center justify-center gap-2 rounded-full bg-sky-600 px-7 py-4 text-base font-semibold text-white shadow-[var(--shadow-cta)] transition-all hover:-translate-y-0.5 hover:brightness-110 active:scale-[0.98] ${className}`}
+    >
+      <MessageCircle size={20} strokeWidth={2.25} />
+      {children}
+    </a>
+  );
+}
+
+function CtaGhost({ children }: { children: React.ReactNode }) {
+  return (
+    <a
+      href={WHATSAPP_URL}
+      target="_blank"
+      rel="noopener"
+      className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-sky-600 px-6 py-3.5 text-base font-semibold text-sky-800 transition-all hover:bg-sky-50"
+    >
+      {children}
+    </a>
+  );
+}
+
+function SectionEyebrow({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="inline-block rounded-full bg-peach-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-peach-700">
+      {children}
+    </span>
+  );
+}
+
+/* ---------- Page ---------- */
+
+function Index() {
+  return (
+    <div className="min-h-screen bg-background text-ink-900">
+      <a
+        href="#conteudo"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-sky-600 focus:px-4 focus:py-2 focus:text-white"
+      >
+        Pular para o conteúdo
+      </a>
+
+      <Header />
+      <main id="conteudo">
+        <Hero />
+        <TrustBar />
+        <Benefits />
+        <About />
+        <Services />
+        <HowItWorks />
+        <Differentiators />
+        <Testimonials />
+        <Coverage />
+        <Faq />
+        <FinalCta />
+      </main>
+      <Footer />
+      <WhatsAppFab />
+    </div>
+  );
+}
+
+function Header() {
+  return (
+    <header className="sticky top-0 z-40 backdrop-blur-md bg-[color-mix(in_oklab,var(--cream)_82%,transparent)] border-b border-border/60">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+        <a href="#" className="flex items-center gap-2 font-heading text-lg font-bold text-ink-900">
+          <span className="grid h-9 w-9 place-items-center rounded-full bg-peach-100 text-peach-700">
+            <PawPrint size={18} />
+          </span>
+          <span>Ana Clara <span className="hidden text-ink-500 sm:inline">· Pet Sitter</span></span>
+        </a>
+        <nav aria-label="Navegação principal" className="hidden gap-6 text-sm font-medium text-ink-700 md:flex">
+          <a href="#servicos" className="hover:text-sky-800">Serviços</a>
+          <a href="#como-funciona" className="hover:text-sky-800">Como funciona</a>
+          <a href="#depoimentos" className="hover:text-sky-800">Depoimentos</a>
+          <a href="#faq" className="hover:text-sky-800">FAQ</a>
+        </nav>
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener"
+          className="inline-flex items-center gap-1.5 rounded-full bg-sky-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:brightness-110"
+        >
+          <MessageCircle size={16} /> WhatsApp
+        </a>
+      </div>
+    </header>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="relative overflow-hidden">
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10"
+        style={{ background: "var(--gradient-hero)", opacity: 0.35 }}
+      />
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 md:grid-cols-[1.1fr_1fr] md:py-24 md:gap-14">
+        <div className="flex flex-col justify-center gap-6">
+          <SectionEyebrow>Pet Sitter em Vila Andrade e região</SectionEyebrow>
+          <h1 className="text-[clamp(2.25rem,5vw,3.75rem)] font-extrabold text-ink-900">
+            Seu pet cuidado com carinho —{" "}
+            <span className="text-sky-800">dentro de casa</span>, do jeitinho que ele já conhece.
+          </h1>
+          <p className="max-w-xl text-lg text-ink-700">
+            Enquanto você viaja ou trabalha, eu visito, alimento, passeio e envio fotos e vídeos
+            em tempo real. Sem estresse de hotel, sem casa vazia.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <CtaPrimary>Agendar uma visita</CtaPrimary>
+            <CtaGhost>Falar com a Ana Clara</CtaGhost>
+          </div>
+          <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-2 text-sm text-ink-700">
+            <li className="flex items-center gap-1.5"><Star size={16} className="fill-peach-500 text-peach-500" /> 4,9 de avaliação</li>
+            <li className="flex items-center gap-1.5"><PawPrint size={16} className="text-sky-600" /> +120 pets cuidados</li>
+            <li className="flex items-center gap-1.5"><MapPin size={16} className="text-sky-600" /> Vila Andrade</li>
+          </ul>
+        </div>
+        <div className="relative">
+          <div
+            className="relative mx-auto aspect-square w-full max-w-md overflow-hidden shadow-[var(--shadow-lg)]"
+            style={{
+              borderRadius: "58% 42% 55% 45% / 50% 55% 45% 50%",
+            }}
+          >
+            <img
+              src={HERO_IMAGE}
+              alt="Ana Clara sorrindo enquanto faz carinho em um cachorro golden"
+              width={600}
+              height={600}
+              fetchPriority="high"
+              decoding="async"
+              className="h-full w-full object-cover"
+            />
+          </div>
+          <div className="absolute -bottom-4 -left-2 flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-ink-900 shadow-[var(--shadow-md)] sm:-left-6">
+            <span className="grid h-8 w-8 place-items-center rounded-full bg-peach-100 text-peach-700">
+              <Heart size={16} className="fill-peach-500 text-peach-500" />
+            </span>
+            +120 famílias atendidas
+          </div>
+          <div className="absolute -right-2 top-6 flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-ink-900 shadow-[var(--shadow-md)] sm:-right-4">
+            <ShieldCheck size={16} className="text-sky-600" />
+            Identidade verificada
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function TrustBar() {
+  const items = [
+    { icon: ShieldCheck, text: "Identidade verificada" },
+    { icon: Star, text: "Referências reais" },
+    { icon: Camera, text: "Fotos e vídeos a cada visita" },
+    { icon: Sparkles, text: "Primeira conversa gratuita" },
+  ];
+  return (
+    <div className="border-y border-border/60 bg-peach-50">
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-3 px-4 py-4 text-sm font-medium text-peach-700 sm:px-6">
+        {items.map((it) => (
+          <span key={it.text} className="flex items-center gap-2">
+            <it.icon size={16} /> {it.text}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Benefits() {
+  const items = [
+    { icon: Home, title: "Ele fica na rotina dele.", text: "Mesma cama, mesmo cheiro, mesmo pote. Menos ansiedade, mais bem-estar." },
+    { icon: Video, title: "Você viaja tranquilo.", text: "Fotos e vídeos em cada visita mostram exatamente como seu pet está agora." },
+    { icon: Heart, title: "Cuidado individual.", text: "Sem grupos, sem canis lotados. É só o seu pet recebendo atenção de verdade." },
+    { icon: Sprout, title: "Sua casa também ganha.", text: "Plantas regadas, luzes alternadas, correspondência guardada. Casa cuidada, pet feliz." },
+    { icon: Pill, title: "Medicação na hora certa.", text: "Insulina, antibiótico, colírio — tudo com registro e foto de cada aplicação." },
+    { icon: Cat, title: "Gatos amam ficar em casa.", text: "Nada de transporte, nada de território novo. Só a Ana chegando com carinho." },
+  ];
+  return (
+    <section aria-labelledby="beneficios-title" className="py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <SectionEyebrow>Benefícios</SectionEyebrow>
+          <h2 id="beneficios-title" className="mt-4 text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold">
+            Por que uma Pet Sitter é melhor do que deixar seu pet sozinho
+          </h2>
+        </div>
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((b) => (
+            <article
+              key={b.title}
+              className="group rounded-3xl border border-border/60 bg-card p-6 shadow-[var(--shadow-sm)] transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-md)]"
+            >
+              <div className="mb-4 grid h-12 w-12 place-items-center rounded-2xl bg-peach-100 text-peach-700 transition group-hover:bg-sky-50 group-hover:text-sky-600">
+                <b.icon size={22} strokeWidth={2} />
+              </div>
+              <h3 className="font-heading text-lg font-semibold text-ink-900">{b.title}</h3>
+              <p className="mt-2 text-ink-700">{b.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function About() {
+  return (
+    <section aria-labelledby="sobre-title" className="bg-sky-50 py-20 sm:py-28">
+      <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 md:grid-cols-2 md:items-center">
+        <div className="relative order-2 md:order-1">
+          <div
+            className="mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden shadow-[var(--shadow-lg)]"
+            style={{ borderRadius: "45% 55% 50% 50% / 55% 45% 55% 45%" }}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=800&q=80"
+              alt="Retrato da Ana Clara segurando um gato ruivo com carinho"
+              width={600}
+              height={750}
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full object-cover"
+            />
+          </div>
+        </div>
+        <div className="order-1 flex flex-col gap-5 md:order-2">
+          <SectionEyebrow>Sobre</SectionEyebrow>
+          <h2 id="sobre-title" className="text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold">
+            Oi, eu sou a Ana Clara
+          </h2>
+          <p className="text-ink-700">
+            Cresci cercada de cães e gatos e transformei esse amor em profissão. Hoje cuido de
+            pets em Vila Andrade e região há mais de 4 anos, com formação em comportamento animal
+            e primeiros socorros pet.
+          </p>
+          <p className="text-ink-700">
+            Cada visita minha começa com uma coisa simples: entender o seu pet. Ele é tímido?
+            Come devagar? Odeia trovão? Adora bola? Anoto tudo, respeito o ritmo dele e mando pra
+            você o registro de cada momento.
+          </p>
+          <p className="text-ink-700">
+            Trabalho com poucos tutores por semana justamente pra manter esse cuidado próximo.
+            Se você me contrata, você fala comigo — não com um app, não com uma central.
+          </p>
+          <p className="text-script text-3xl leading-none text-peach-700">Ana Clara</p>
+          <ul className="mt-2 flex flex-wrap gap-2 text-sm">
+            <li className="flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 font-medium text-ink-700 shadow-sm"><Sparkles size={14} className="text-sky-600" /> Comportamento animal</li>
+            <li className="flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 font-medium text-ink-700 shadow-sm"><Heart size={14} className="text-peach-700" /> Primeiros socorros pet</li>
+            <li className="flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 font-medium text-ink-700 shadow-sm"><ShieldCheck size={14} className="text-sky-600" /> Identidade verificada</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Services() {
+  const cards = [
+    {
+      icon: Dog,
+      title: "Para cães",
+      accent: "bg-peach-100 text-peach-700",
+      items: [
+        "Passeio de 30 ou 60 minutos",
+        "Alimentação e água fresca",
+        "Brincadeira e companhia",
+        "Xixi e cocô recolhidos",
+        "Registro em fotos e vídeos",
+      ],
+    },
+    {
+      icon: Cat,
+      title: "Para gatos",
+      accent: "bg-sky-50 text-sky-600",
+      items: [
+        "Alimentação úmida e seca",
+        "Troca de água filtrada",
+        "Higiene da caixa de areia",
+        "Brincadeira no ritmo dele",
+        "Registro em fotos e vídeos",
+      ],
+    },
+    {
+      icon: Pill,
+      title: "Extras inclusos",
+      accent: "bg-peach-100 text-peach-700",
+      items: [
+        "Administração de medicamentos",
+        "Aplicação de insulina",
+        "Cuidado com pets idosos",
+        "Regas de plantas e casa",
+        "Relatório escrito ao final",
+      ],
+      featured: true,
+    },
+  ];
+  return (
+    <section id="servicos" aria-labelledby="servicos-title" className="py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <SectionEyebrow>Serviços</SectionEyebrow>
+          <h2 id="servicos-title" className="mt-4 text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold">
+            O que está incluso em cada visita
+          </h2>
+          <p className="mt-3 text-ink-700">
+            Cuidado personalizado para o ritmo, temperamento e necessidades do seu pet.
+          </p>
+        </div>
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
+          {cards.map((c) => (
+            <article
+              key={c.title}
+              className={`rounded-3xl border border-border/60 bg-card p-7 shadow-[var(--shadow-sm)] transition hover:-translate-y-1 hover:shadow-[var(--shadow-md)] ${c.featured ? "ring-2 ring-sky-400" : ""}`}
+            >
+              <div className={`mb-5 grid h-14 w-14 place-items-center rounded-2xl ${c.accent}`}>
+                <c.icon size={26} strokeWidth={2} />
+              </div>
+              <h3 className="font-heading text-xl font-semibold">{c.title}</h3>
+              <ul className="mt-4 space-y-2.5 text-ink-700">
+                {c.items.map((it) => (
+                  <li key={it} className="flex gap-2">
+                    <span className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-sky-600" />
+                    <span>{it}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+        <div className="mt-12 text-center">
+          <CtaPrimary>Quero cuidar do meu pet assim</CtaPrimary>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HowItWorks() {
+  const steps = [
+    { icon: MessageCircle, title: "Você chama no WhatsApp", text: "Me conta sobre seu pet e as datas." },
+    { icon: CalendarCheck, title: "Conversa gratuita", text: "Presencial ou por vídeo, pra nos conhecermos." },
+    { icon: KeyRound, title: "Fechamos o combinado", text: "Chaves, rotina e contatos de emergência." },
+    { icon: PawPrint, title: "Começam as visitas", text: "No horário combinado, com registro completo." },
+    { icon: Bell, title: "Você acompanha em tempo real", text: "Fotos, vídeos e mensagens a cada visita." },
+  ];
+  return (
+    <section id="como-funciona" aria-labelledby="como-title" className="bg-peach-50 py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <SectionEyebrow>Como funciona</SectionEyebrow>
+          <h2 id="como-title" className="mt-4 text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold">
+            Simples do primeiro contato à última visita
+          </h2>
+        </div>
+        <ol className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+          {steps.map((s, i) => (
+            <li
+              key={s.title}
+              className="relative rounded-3xl bg-card p-6 shadow-[var(--shadow-sm)]"
+            >
+              <div className="mb-3 flex items-center gap-3">
+                <span className="grid h-10 w-10 place-items-center rounded-full bg-sky-600 font-heading text-sm font-bold text-white">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <s.icon size={22} className="text-peach-700" />
+              </div>
+              <h3 className="font-heading text-base font-semibold">{s.title}</h3>
+              <p className="mt-1.5 text-sm text-ink-700">{s.text}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  );
+}
+
+function Differentiators() {
+  const items = [
+    { icon: Heart, title: "Atendimento humanizado", text: "Você fala comigo, sempre.", span: "md:col-span-2" },
+    { icon: Bell, title: "Comunicação em tempo real", text: "Nada de esperar o fim do dia pra saber do seu pet.", span: "" },
+    { icon: Camera, title: "Fotos e vídeos em toda visita", text: "Sem exceção.", span: "" },
+    { icon: PawPrint, title: "Cuidado individualizado", text: "Poucos tutores por semana.", span: "" },
+    { icon: ShieldCheck, title: "Segurança total", text: "Identidade verificada, referências e contrato simples.", span: "md:col-span-2" },
+  ];
+  return (
+    <section aria-labelledby="dif-title" className="py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <SectionEyebrow>Diferenciais</SectionEyebrow>
+          <h2 id="dif-title" className="mt-4 text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold">
+            O que faz o meu cuidado ser diferente
+          </h2>
+        </div>
+        <div className="mt-14 grid gap-5 md:grid-cols-3">
+          {items.map((d) => (
+            <article
+              key={d.title}
+              className={`rounded-3xl border border-border/60 bg-card p-6 shadow-[var(--shadow-sm)] transition hover:-translate-y-1 hover:shadow-[var(--shadow-md)] ${d.span}`}
+            >
+              <div className="mb-3 grid h-11 w-11 place-items-center rounded-2xl bg-sky-50 text-sky-600">
+                <d.icon size={22} />
+              </div>
+              <h3 className="font-heading text-lg font-semibold">{d.title}</h3>
+              <p className="mt-1.5 text-ink-700">{d.text}</p>
+            </article>
+          ))}
+        </div>
+        <div className="mt-12 text-center">
+          <CtaPrimary>Agendar a primeira conversa (gratuita)</CtaPrimary>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Testimonials() {
+  const items = [
+    { name: "Marina R.", where: "Vila Andrade", pet: "Théo, golden", text: "Viajei 10 dias tranquila pela primeira vez. A Ana mandava vídeo do Théo na janela e eu já sabia que estava tudo bem." },
+    { name: "Ricardo T.", where: "Panamby", pet: "Luna, siamesa", text: "Meu gato é ansioso e não aceita hotel. A Ana entrou na casa dele com um respeito que eu nunca vi. Virou parte da família." },
+    { name: "Cláudia M.", where: "Morumbi", pet: "Bidu, dachshund idoso", text: "Ela aplica insulina no meu Bidu duas vezes ao dia com foto de cada aplicação. Confio de olhos fechados." },
+  ];
+  return (
+    <section id="depoimentos" aria-labelledby="dep-title" className="bg-sky-50 py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <SectionEyebrow>Depoimentos</SectionEyebrow>
+          <h2 id="dep-title" className="mt-4 text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold">
+            O que os tutores da região dizem
+          </h2>
+          <p className="mt-3 text-sm text-ink-500">
+            Depoimentos ilustrativos — serão substituídos por clientes reais.
+          </p>
+        </div>
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {items.map((t) => (
+            <figure
+              key={t.name}
+              className="flex h-full flex-col rounded-3xl bg-card p-7 shadow-[var(--shadow-sm)]"
+            >
+              <div className="mb-3 flex gap-1 text-peach-500" aria-label="5 estrelas">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} size={16} className="fill-current" />
+                ))}
+              </div>
+              <blockquote className="text-ink-700">“{t.text}”</blockquote>
+              <figcaption className="mt-5 border-t border-border/60 pt-4 text-sm">
+                <div className="font-semibold text-ink-900">{t.name}</div>
+                <div className="text-ink-500">{t.where} · tutor(a) de {t.pet}</div>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Coverage() {
+  const bairros = ["Vila Andrade", "Morumbi", "Panamby", "Real Parque", "Jardim Ampére", "Jardim Colombo", "Vila Suzana", "Paraisópolis (região)"];
+  return (
+    <section aria-labelledby="cob-title" className="py-20 sm:py-28">
+      <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
+        <SectionEyebrow>Cobertura</SectionEyebrow>
+        <h2 id="cob-title" className="mt-4 text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold">
+          Atendo com carinho em toda a região
+        </h2>
+        <ul className="mt-8 flex flex-wrap justify-center gap-2.5">
+          {bairros.map((b) => (
+            <li key={b} className="flex items-center gap-1.5 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-ink-700 shadow-sm">
+              <MapPin size={14} className="text-sky-600" /> {b}
+            </li>
+          ))}
+        </ul>
+        <div className="mt-10">
+          <CtaGhost>Ver se atende meu bairro</CtaGhost>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Faq() {
+  const [open, setOpen] = useState<number | null>(0);
+  return (
+    <section id="faq" aria-labelledby="faq-title" className="bg-peach-50 py-20 sm:py-28">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6">
+        <div className="text-center">
+          <SectionEyebrow>Perguntas frequentes</SectionEyebrow>
+          <h2 id="faq-title" className="mt-4 text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold">
+            Antes de agendar, você pode querer saber
+          </h2>
+        </div>
+        <div className="mt-12 space-y-3">
+          {faqData.map((f, i) => {
+            const isOpen = open === i;
+            return (
+              <div key={f.q} className="overflow-hidden rounded-2xl border border-border/60 bg-card shadow-[var(--shadow-sm)]">
+                <button
+                  type="button"
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-panel-${i}`}
+                  className="flex w-full items-center justify-between gap-4 p-5 text-left font-heading text-base font-semibold text-ink-900 transition hover:bg-sky-50"
+                >
+                  <span>{f.q}</span>
+                  <ChevronDown
+                    size={20}
+                    className={`shrink-0 text-sky-600 transition-transform ${isOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
+                {isOpen && (
+                  <div id={`faq-panel-${i}`} className="border-t border-border/60 px-5 py-4 text-ink-700">
+                    {f.a}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FinalCta() {
+  return (
+    <section aria-labelledby="cta-title" className="px-4 py-20 sm:px-6 sm:py-28">
+      <div
+        className="mx-auto max-w-5xl overflow-hidden rounded-[2rem] px-8 py-16 text-center text-white shadow-[var(--shadow-lg)] sm:px-14"
+        style={{ background: "linear-gradient(135deg, oklch(0.6 0.16 240) 0%, oklch(0.78 0.13 28) 100%)" }}
+      >
+        <h2 id="cta-title" className="text-[clamp(1.75rem,3.5vw,2.75rem)] font-extrabold">
+          Seu pet merece continuar em casa, cercado do que ele conhece.
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-white/90">
+          Vagas limitadas por semana pra manter o cuidado individual. Me chame agora e vamos
+          combinar a primeira conversa — sem compromisso.
+        </p>
+        <div className="mt-8 flex justify-center">
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-base font-bold text-sky-800 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.4)] transition hover:-translate-y-0.5 hover:bg-peach-50"
+          >
+            <MessageCircle size={20} /> Agendar pelo WhatsApp
+          </a>
+        </div>
+        <p className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm text-white/85">
+          <span className="flex items-center gap-1.5"><Clock size={14} /> Respondo em até 30 minutos</span>
+          <span>·</span>
+          <span>Seg a sáb, 8h às 20h</span>
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="border-t border-border/60 bg-card">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4">
+        <div>
+          <div className="flex items-center gap-2 font-heading text-lg font-bold text-ink-900">
+            <span className="grid h-9 w-9 place-items-center rounded-full bg-peach-100 text-peach-700">
+              <PawPrint size={18} />
+            </span>
+            Ana Clara
+          </div>
+          <p className="mt-3 text-sm text-ink-700">
+            Cuidado com carinho em Vila Andrade e região. Pet Sitter profissional, com formação
+            em comportamento animal e primeiros socorros pet.
+          </p>
+        </div>
+        <div>
+          <h3 className="font-heading font-semibold text-ink-900">Contato</h3>
+          <ul className="mt-3 space-y-2 text-sm text-ink-700">
+            <li className="flex items-center gap-2"><Phone size={14} className="text-sky-600" /> <a href={WHATSAPP_URL} target="_blank" rel="noopener" className="hover:text-sky-800">(11) 9XXXX-XXXX</a></li>
+            <li className="flex items-center gap-2"><Instagram size={14} className="text-sky-600" /> <a href="https://instagram.com/anaclara.petsitter" target="_blank" rel="noopener" className="hover:text-sky-800">@anaclara.petsitter</a></li>
+            <li className="flex items-center gap-2"><MapPin size={14} className="text-sky-600" /> Vila Andrade, São Paulo — SP</li>
+            <li className="flex items-center gap-2"><Clock size={14} className="text-sky-600" /> Seg–Sáb, 8h às 20h</li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="font-heading font-semibold text-ink-900">Serviços</h3>
+          <ul className="mt-3 space-y-2 text-sm text-ink-700">
+            <li>Pet Sitter para cães</li>
+            <li>Pet Sitter para gatos</li>
+            <li>Passeios em Vila Andrade</li>
+            <li>Administração de medicação</li>
+            <li>Cuidado com pets idosos</li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="font-heading font-semibold text-ink-900">Bairros atendidos</h3>
+          <ul className="mt-3 space-y-2 text-sm text-ink-700">
+            <li>Vila Andrade · Morumbi</li>
+            <li>Panamby · Real Parque</li>
+            <li>Jardim Ampére · Jardim Colombo</li>
+            <li>Vila Suzana</li>
+          </ul>
+        </div>
+      </div>
+      <div className="border-t border-border/60">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-6 text-xs text-ink-500 sm:flex-row sm:px-6">
+          <p>© {new Date().getFullYear()} Ana Clara Pet Sitter. Feito com carinho.</p>
+          <p className="flex items-center gap-1">Cuidando de pets em Vila Andrade <Heart size={12} className="fill-peach-500 text-peach-500" /></p>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function WhatsAppFab() {
+  return (
+    <a
+      href={WHATSAPP_URL}
+      target="_blank"
+      rel="noopener"
+      aria-label="Falar no WhatsApp com Ana Clara"
+      className="fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full text-white shadow-[0_12px_28px_-8px_rgba(22,163,74,0.55)] transition hover:scale-105"
+      style={{ background: "oklch(0.65 0.17 155)", animation: "fab-pulse 2s ease-out infinite" }}
+    >
+      <MessageCircle size={26} strokeWidth={2.25} />
+    </a>
+  );
 }
