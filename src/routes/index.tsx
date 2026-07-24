@@ -754,12 +754,18 @@ const bodyHtml = `
 const localBusinessJsonLd = {
   "@context": "https://schema.org",
   "@type": "VeterinaryCare",
+  "@id": "#patinhas-petshop",
   name: "Patinhas Pet Shop & Vet",
   description:
     "Pet Shop e Clínica Veterinária completa: banho e tosa, consultas, vacinação, cirurgias, hotel pet e produtos.",
   image: HERO_IMAGE,
   telephone: "+55-11-98765-4321",
+  email: "contato@patinhaspet.com.br",
   priceRange: "$$",
+  areaServed: {
+    "@type": "City",
+    name: "São Paulo",
+  },
   address: {
     "@type": "PostalAddress",
     streetAddress: "Rua das Patinhas, 123",
