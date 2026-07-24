@@ -526,9 +526,10 @@ function Differentiators() {
 function Testimonials() {
   const items = [
     { name: "Marina R.", where: "Vila Andrade", pet: "Théo, golden", text: "Viajei 10 dias tranquila pela primeira vez. A Ana mandava vídeo do Théo na janela e eu já sabia que estava tudo bem." },
-    { name: "Ricardo T.", where: "Panamby", pet: "Luna, siamesa", text: "Meu gato é ansioso e não aceita hotel. A Ana entrou na casa dele com um respeito que eu nunca vi. Virou parte da família." },
-    { name: "Cláudia M.", where: "Morumbi", pet: "Bidu, dachshund idoso", text: "Ela aplica insulina no meu Bidu duas vezes ao dia com foto de cada aplicação. Confio de olhos fechados." },
+    { name: "Ricardo T.", where: "Vila Andrade", pet: "Luna, siamesa", text: "Meu gato é ansioso e não aceita hotel. A Ana entrou na casa dele com um respeito que eu nunca vi. Virou parte da família." },
+    { name: "Cláudia M.", where: "Vila Andrade", pet: "Bidu, dachshund idoso", text: "Ela cuida da medicação do meu Bidu com foto de cada aplicação. Confio de olhos fechados." },
   ];
+
   return (
     <section id="depoimentos" aria-labelledby="dep-title" className="bg-sky-50 py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
