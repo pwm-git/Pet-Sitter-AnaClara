@@ -314,24 +314,9 @@ function Benefits() {
 function About() {
   return (
     <section aria-labelledby="sobre-title" className="bg-sky-50 py-20 sm:py-28">
-      <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 md:grid-cols-2 md:items-center">
-        <div className="relative order-2 md:order-1">
-          <div
-            className="mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden shadow-[var(--shadow-lg)]"
-            style={{ borderRadius: "45% 55% 50% 50% / 55% 45% 55% 45%" }}
-          >
-            <img
-              src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=800&q=80"
-              alt="Retrato da Ana Clara segurando um gato ruivo com carinho"
-              width={600}
-              height={750}
-              loading="lazy"
-              decoding="async"
-              className="h-full w-full object-cover"
-            />
-          </div>
-        </div>
-        <div className="order-1 flex flex-col gap-5 md:order-2">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6">
+        <div className="flex flex-col gap-5">
+
           <SectionEyebrow>Sobre</SectionEyebrow>
           <h2 id="sobre-title" className="text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold">
             Oi, eu sou a Ana Clara
