@@ -199,24 +199,25 @@ function Hero() {
       />
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 md:grid-cols-[1.1fr_1fr] md:py-24 md:gap-14">
         <div className="flex flex-col justify-center gap-6">
-          <SectionEyebrow>Pet Sitter em Vila Andrade e região</SectionEyebrow>
+          <SectionEyebrow>Pet Sitter em Vila Andrade</SectionEyebrow>
           <h1 className="text-[clamp(2.25rem,5vw,3.75rem)] font-extrabold text-ink-900">
-            Seu pet cuidado com carinho —{" "}
-            <span className="text-sky-800">dentro de casa</span>, do jeitinho que ele já conhece.
+            Cuidados personalizados para seu pet,{" "}
+            <span className="text-sky-800">no conforto da sua casa</span>.
           </h1>
           <p className="max-w-xl text-lg text-ink-700">
-            Enquanto você viaja ou trabalha, eu visito, alimento, passeio e envio fotos e vídeos
-            em tempo real. Sem estresse de hotel, sem casa vazia.
+            Vai viajar ou passar o dia fora? Seu pet não precisa sair de casa para ser bem cuidado.
+            Carinho, atenção e brincadeiras do jeitinho que ele gosta — com fotos e vídeos a cada visita.
           </p>
           <div className="flex flex-wrap gap-3">
             <CtaPrimary>Agendar uma visita</CtaPrimary>
             <CtaGhost>Falar com a Ana Clara</CtaGhost>
           </div>
           <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-2 text-sm text-ink-700">
-            <li className="flex items-center gap-1.5"><Star size={16} className="fill-peach-500 text-peach-500" /> 4,9 de avaliação</li>
-            <li className="flex items-center gap-1.5"><PawPrint size={16} className="text-sky-600" /> +120 pets cuidados</li>
-            <li className="flex items-center gap-1.5"><MapPin size={16} className="text-sky-600" /> Vila Andrade</li>
+            <li className="flex items-center gap-1.5"><Heart size={16} className="fill-peach-500 text-peach-500" /> Seu pet sempre cuidado com muito amor</li>
+            <li className="flex items-center gap-1.5"><MapPin size={16} className="text-sky-600" /> Vila Andrade — SP</li>
+            <li className="flex items-center gap-1.5"><Sparkles size={16} className="text-sky-600" /> Vagas limitadas</li>
           </ul>
+
         </div>
         <div className="relative">
           <div
