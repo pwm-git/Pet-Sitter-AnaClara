@@ -10,7 +10,7 @@ const HERO_IMAGE =
   "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=1200&q=80";
 
 const WHATSAPP_URL =
-  "https://wa.me/5511999999999?text=" +
+  "https://wa.me/5511996560051?text=" +
   encodeURIComponent("Oi Ana! Vim pela página e queria agendar uma visita para meu pet.");
 
 const localBusinessJsonLd = {
@@ -19,14 +19,13 @@ const localBusinessJsonLd = {
   "@id": "#ana-clara-pet-sitter",
   name: "Ana Clara Pet Sitter",
   description:
-    "Pet Sitter em Vila Andrade e região. Visitas personalizadas para cães e gatos, passeios, alimentação, medicação, fotos e vídeos em tempo real.",
+    "Pet Sitter em Vila Andrade. Cuidados personalizados para cães e gatos no conforto da sua casa: visitas diárias, passeios, alimentação, medicação e relatórios com fotos e vídeos a cada visita.",
   image: HERO_IMAGE,
-  telephone: "+55-11-99999-9999",
+  telephone: "+55-11-99656-0051",
   priceRange: "$$",
   areaServed: [
     { "@type": "City", name: "São Paulo" },
-    "Vila Andrade", "Morumbi", "Panamby", "Real Parque",
-    "Jardim Ampére", "Jardim Colombo", "Vila Suzana",
+    "Vila Andrade",
   ],
   address: {
     "@type": "PostalAddress",
@@ -37,8 +36,8 @@ const localBusinessJsonLd = {
   openingHoursSpecification: [
     { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], opens: "08:00", closes: "20:00" },
   ],
-  sameAs: ["https://instagram.com/anaclara.petsitter"],
 };
+
 
 const faqData = [
   { q: "Você atende em qual região?", a: "Vila Andrade e bairros vizinhos: Morumbi, Panamby, Real Parque, Jardim Ampére, Jardim Colombo e Vila Suzana. Se estiver por perto, pode perguntar." },
