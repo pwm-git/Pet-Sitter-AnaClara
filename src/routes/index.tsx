@@ -754,12 +754,18 @@ const bodyHtml = `
 const localBusinessJsonLd = {
   "@context": "https://schema.org",
   "@type": "VeterinaryCare",
+  "@id": "#patinhas-petshop",
   name: "Patinhas Pet Shop & Vet",
   description:
     "Pet Shop e Clínica Veterinária completa: banho e tosa, consultas, vacinação, cirurgias, hotel pet e produtos.",
   image: HERO_IMAGE,
   telephone: "+55-11-98765-4321",
+  email: "contato@patinhaspet.com.br",
   priceRange: "$$",
+  areaServed: {
+    "@type": "City",
+    name: "São Paulo",
+  },
   address: {
     "@type": "PostalAddress",
     streetAddress: "Rua das Patinhas, 123",
@@ -807,6 +813,7 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
       { property: "og:image", content: HERO_IMAGE },
+      { property: "og:image:alt", content: "Cachorro golden retriever sorrindo, atendido na Patinhas Pet Shop" },
       { property: "og:locale", content: "pt_BR" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Patinhas Pet Shop & Vet" },
@@ -816,7 +823,9 @@ export const Route = createFileRoute("/")({
           "Pet Shop e Clínica Veterinária completa: banho e tosa, consultas, hotel pet e muito mais.",
       },
       { name: "twitter:image", content: HERO_IMAGE },
+      { name: "twitter:image:alt", content: "Cachorro golden retriever sorrindo, atendido na Patinhas Pet Shop" },
       { name: "theme-color", content: "#2196f3" },
+      { name: "robots", content: "index, follow" },
     ],
     links: [
       { rel: "canonical", href: "/" },
