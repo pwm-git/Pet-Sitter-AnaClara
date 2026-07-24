@@ -681,15 +681,15 @@ function Footer() {
             Ana Clara
           </div>
           <p className="mt-3 text-sm text-ink-700">
-            Cuidado com carinho em Vila Andrade e região. Pet Sitter profissional, com formação
-            em comportamento animal e primeiros socorros pet.
+            Cuidados personalizados para seu pet, no conforto da sua casa. Atendimento
+            exclusivo em Vila Andrade — São Paulo.
           </p>
         </div>
         <div>
           <h3 className="font-heading font-semibold text-ink-900">Contato</h3>
           <ul className="mt-3 space-y-2 text-sm text-ink-700">
-            <li className="flex items-center gap-2"><Phone size={14} className="text-sky-600" /> <a href={WHATSAPP_URL} target="_blank" rel="noopener" className="hover:text-sky-800">(11) 9XXXX-XXXX</a></li>
-            <li className="flex items-center gap-2"><Instagram size={14} className="text-sky-600" /> <a href="https://instagram.com/anaclara.petsitter" target="_blank" rel="noopener" className="hover:text-sky-800">@anaclara.petsitter</a></li>
+            <li className="flex items-center gap-2"><Phone size={14} className="text-sky-600" /> <a href={WHATSAPP_URL} target="_blank" rel="noopener" className="hover:text-sky-800">(11) 99656-0051</a></li>
+            <li className="flex items-center gap-2"><MessageCircle size={14} className="text-sky-600" /> <a href={WHATSAPP_URL} target="_blank" rel="noopener" className="hover:text-sky-800">Agendar pelo WhatsApp</a></li>
             <li className="flex items-center gap-2"><MapPin size={14} className="text-sky-600" /> Vila Andrade, São Paulo — SP</li>
             <li className="flex items-center gap-2"><Clock size={14} className="text-sky-600" /> Seg–Sáb, 8h às 20h</li>
           </ul>
@@ -697,22 +697,21 @@ function Footer() {
         <div>
           <h3 className="font-heading font-semibold text-ink-900">Serviços</h3>
           <ul className="mt-3 space-y-2 text-sm text-ink-700">
-            <li>Pet Sitter para cães</li>
-            <li>Pet Sitter para gatos</li>
-            <li>Passeios em Vila Andrade</li>
-            <li>Administração de medicação</li>
-            <li>Cuidado com pets idosos</li>
+            <li>Visitas diárias</li>
+            <li>Passeios e brincadeiras</li>
+            <li>Cuidados com a saúde</li>
+            <li>Administração de medicamentos</li>
+            <li>Acompanhamento e relatórios</li>
           </ul>
         </div>
         <div>
-          <h3 className="font-heading font-semibold text-ink-900">Bairros atendidos</h3>
+          <h3 className="font-heading font-semibold text-ink-900">Área de atendimento</h3>
           <ul className="mt-3 space-y-2 text-sm text-ink-700">
-            <li>Vila Andrade · Morumbi</li>
-            <li>Panamby · Real Parque</li>
-            <li>Jardim Ampére · Jardim Colombo</li>
-            <li>Vila Suzana</li>
+            <li className="flex items-center gap-2"><MapPin size={14} className="text-sky-600" /> Vila Andrade</li>
+            <li className="text-ink-500">Atendimento exclusivo no bairro para manter o cuidado próximo.</li>
           </ul>
         </div>
+
       </div>
       <div className="border-t border-border/60">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-6 text-xs text-ink-500 sm:flex-row sm:px-6">
