@@ -3,7 +3,7 @@ import { useState } from "react";
 import {
   Heart, Home, Camera, Pill, Cat, Sprout, PawPrint, MapPin,
   MessageCircle, CalendarCheck, KeyRound, Bell, Star, ShieldCheck,
-  Phone, Instagram, Clock, ChevronDown, Sparkles, Video, Dog,
+  Phone, Clock, ChevronDown, Sparkles, Video, Dog,
 } from "lucide-react";
 
 const HERO_IMAGE =
