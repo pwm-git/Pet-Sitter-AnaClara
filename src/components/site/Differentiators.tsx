@@ -43,7 +43,7 @@ export function Differentiators() {
           {items.map((d) => (
             <article
               key={d.title}
-              className={`rounded-3xl border border-border/60 bg-card p-6 shadow-[var(--shadow-sm)] transition hover:-translate-y-1 hover:shadow-[var(--shadow-md)] ${d.span}`}
+              className={`rounded-3xl border border-border/60 bg-card p-6 shadow-soft transition hover:-translate-y-1 hover:shadow-elev ${d.span}`}
             >
               <div className="mb-3 grid h-11 w-11 place-items-center rounded-2xl bg-sky-50 text-sky-600">
                 <d.icon size={22} />

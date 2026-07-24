@@ -58,7 +58,7 @@ export function Services() {
           {cards.map((c) => (
             <article
               key={c.title}
-              className={`rounded-3xl border border-border/60 bg-card p-7 shadow-[var(--shadow-sm)] transition hover:-translate-y-1 hover:shadow-[var(--shadow-md)] ${c.featured ? "ring-2 ring-sky-400" : ""}`}
+              className={`rounded-3xl border border-border/60 bg-card p-7 shadow-soft transition hover:-translate-y-1 hover:shadow-elev ${c.featured ? "ring-2 ring-sky-400" : ""}`}
             >
               <div className={`mb-5 grid h-14 w-14 place-items-center rounded-2xl ${c.accent}`}>
                 <c.icon size={26} strokeWidth={2} />

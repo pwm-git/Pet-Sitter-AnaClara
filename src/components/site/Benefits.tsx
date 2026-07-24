@@ -48,7 +48,7 @@ export function Benefits() {
           {items.map((b) => (
             <article
               key={b.title}
-              className="group rounded-3xl border border-border/60 bg-card p-6 shadow-[var(--shadow-sm)] transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-md)]"
+              className="group rounded-3xl border border-border/60 bg-card p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-elev"
             >
               <div className="mb-4 grid h-12 w-12 place-items-center rounded-2xl bg-peach-100 text-peach-700 transition group-hover:bg-sky-50 group-hover:text-sky-600">
                 <b.icon size={22} strokeWidth={2} />

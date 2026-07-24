@@ -39,7 +39,7 @@ export function Testimonials() {
           {items.map((t) => (
             <figure
               key={t.name}
-              className="flex h-full flex-col rounded-3xl bg-card p-7 shadow-[var(--shadow-sm)]"
+              className="flex h-full flex-col rounded-3xl bg-card p-7 shadow-soft"
             >
               <div className="mb-3 flex gap-1 text-peach-500" aria-label="5 estrelas">
                 {Array.from({ length: 5 }).map((_, i) => (

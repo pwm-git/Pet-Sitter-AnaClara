@@ -43,7 +43,7 @@ export function HowItWorks() {
           {steps.map((s, i) => (
             <li
               key={s.title}
-              className="relative rounded-3xl bg-card p-6 shadow-[var(--shadow-sm)]"
+              className="relative rounded-3xl bg-card p-6 shadow-soft"
             >
               <div className="mb-3 flex items-center gap-3">
                 <span className="grid h-10 w-10 place-items-center rounded-full bg-sky-600 font-heading text-sm font-bold text-white">
