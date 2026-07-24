@@ -2,11 +2,31 @@ import { Heart, Bell, Camera, PawPrint, ShieldCheck } from "lucide-react";
 import { CtaPrimary, SectionEyebrow } from "./ui";
 
 const items = [
-  { icon: Heart, title: "Atendimento humanizado", text: "Você fala comigo, sempre.", span: "md:col-span-2" },
-  { icon: Bell, title: "Comunicação em tempo real", text: "Nada de esperar o fim do dia pra saber do seu pet.", span: "" },
+  {
+    icon: Heart,
+    title: "Atendimento humanizado",
+    text: "Você fala comigo, sempre.",
+    span: "md:col-span-2",
+  },
+  {
+    icon: Bell,
+    title: "Comunicação em tempo real",
+    text: "Nada de esperar o fim do dia pra saber do seu pet.",
+    span: "",
+  },
   { icon: Camera, title: "Fotos e vídeos em toda visita", text: "Sem exceção.", span: "" },
-  { icon: PawPrint, title: "Cuidado individualizado", text: "Poucos tutores por semana.", span: "" },
-  { icon: ShieldCheck, title: "Confiança e transparência", text: "Combinado claro, referências e contrato simples desde a primeira conversa.", span: "md:col-span-2" },
+  {
+    icon: PawPrint,
+    title: "Cuidado individualizado",
+    text: "Poucos tutores por semana.",
+    span: "",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Confiança e transparência",
+    text: "Combinado claro, referências e contrato simples desde a primeira conversa.",
+    span: "md:col-span-2",
+  },
 ];
 
 export function Differentiators() {

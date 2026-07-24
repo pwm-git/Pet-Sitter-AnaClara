@@ -2,12 +2,36 @@ import { Home, Video, Heart, Sprout, Pill, Cat } from "lucide-react";
 import { SectionEyebrow } from "./ui";
 
 const items = [
-  { icon: Home, title: "Ele fica na rotina dele.", text: "Mesma cama, mesmo cheiro, mesmo pote. Menos ansiedade, mais bem-estar." },
-  { icon: Video, title: "Você viaja tranquilo.", text: "Fotos e vídeos em cada visita mostram exatamente como seu pet está agora." },
-  { icon: Heart, title: "Cuidado individual.", text: "Sem grupos, sem canis lotados. É só o seu pet recebendo atenção de verdade." },
-  { icon: Sprout, title: "Sua casa também ganha.", text: "Plantas regadas, luzes alternadas, correspondência guardada. Casa cuidada, pet feliz." },
-  { icon: Pill, title: "Medicação na hora certa.", text: "Insulina, antibiótico, colírio — tudo com registro e foto de cada aplicação." },
-  { icon: Cat, title: "Gatos amam ficar em casa.", text: "Nada de transporte, nada de território novo. Só a Ana chegando com carinho." },
+  {
+    icon: Home,
+    title: "Ele fica na rotina dele.",
+    text: "Mesma cama, mesmo cheiro, mesmo pote. Menos ansiedade, mais bem-estar.",
+  },
+  {
+    icon: Video,
+    title: "Você viaja tranquilo.",
+    text: "Fotos e vídeos em cada visita mostram exatamente como seu pet está agora.",
+  },
+  {
+    icon: Heart,
+    title: "Cuidado individual.",
+    text: "Sem grupos, sem canis lotados. É só o seu pet recebendo atenção de verdade.",
+  },
+  {
+    icon: Sprout,
+    title: "Sua casa também ganha.",
+    text: "Plantas regadas, luzes alternadas, correspondência guardada. Casa cuidada, pet feliz.",
+  },
+  {
+    icon: Pill,
+    title: "Medicação na hora certa.",
+    text: "Insulina, antibiótico, colírio — tudo com registro e foto de cada aplicação.",
+  },
+  {
+    icon: Cat,
+    title: "Gatos amam ficar em casa.",
+    text: "Nada de transporte, nada de território novo. Só a Ana chegando com carinho.",
+  },
 ];
 
 export function Benefits() {

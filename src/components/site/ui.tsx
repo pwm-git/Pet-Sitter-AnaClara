@@ -1,7 +1,13 @@
 import { MessageCircle } from "lucide-react";
 import { WHATSAPP_URL } from "@/lib/site-data";
 
-export function CtaPrimary({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+export function CtaPrimary({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
     <a
       href={WHATSAPP_URL}

@@ -19,16 +19,24 @@ export function Hero() {
           </h1>
           <p className="max-w-xl text-lg text-ink-700">
             Vai viajar ou passar o dia fora? Seu pet não precisa sair de casa para ser bem cuidado.
-            Carinho, atenção e brincadeiras do jeitinho que ele gosta — com fotos e vídeos a cada visita.
+            Carinho, atenção e brincadeiras do jeitinho que ele gosta — com fotos e vídeos a cada
+            visita.
           </p>
           <div className="flex flex-wrap gap-3">
             <CtaPrimary>Agendar uma visita</CtaPrimary>
             <CtaGhost>Falar com a Ana Clara</CtaGhost>
           </div>
           <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-2 text-sm text-ink-700">
-            <li className="flex items-center gap-1.5"><Heart size={16} className="fill-peach-500 text-peach-500" /> Seu pet sempre cuidado com muito amor</li>
-            <li className="flex items-center gap-1.5"><MapPin size={16} className="text-sky-600" /> Vila Andrade — SP</li>
-            <li className="flex items-center gap-1.5"><Sparkles size={16} className="text-sky-600" /> Vagas limitadas</li>
+            <li className="flex items-center gap-1.5">
+              <Heart size={16} className="fill-peach-500 text-peach-500" /> Seu pet sempre cuidado
+              com muito amor
+            </li>
+            <li className="flex items-center gap-1.5">
+              <MapPin size={16} className="text-sky-600" /> Vila Andrade — SP
+            </li>
+            <li className="flex items-center gap-1.5">
+              <Sparkles size={16} className="text-sky-600" /> Vagas limitadas
+            </li>
           </ul>
         </div>
         <div className="relative">

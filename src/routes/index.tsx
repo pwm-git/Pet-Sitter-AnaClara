@@ -1,9 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  HERO_IMAGE,
-  localBusinessJsonLd,
-  faqJsonLd,
-} from "@/lib/site-data";
+import { HERO_IMAGE, localBusinessJsonLd, faqJsonLd } from "@/lib/site-data";
 import { Header } from "@/components/site/Header";
 import { Hero } from "@/components/site/Hero";
 import { TrustBar } from "@/components/site/TrustBar";
@@ -24,23 +20,40 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Pet Sitter em Vila Andrade | Ana Clara — Cuidados no Conforto da Sua Casa" },
-      { name: "description", content: "Pet Sitter em Vila Andrade: cuidados personalizados para seu pet no conforto da sua casa. Visitas diárias, passeios, medicação e relatórios com fotos e vídeos. Agende no WhatsApp." },
+      {
+        name: "description",
+        content:
+          "Pet Sitter em Vila Andrade: cuidados personalizados para seu pet no conforto da sua casa. Visitas diárias, passeios, medicação e relatórios com fotos e vídeos. Agende no WhatsApp.",
+      },
       { name: "robots", content: "index, follow" },
       { property: "og:title", content: "Pet Sitter em Vila Andrade | Ana Clara" },
-      { property: "og:description", content: "Cuidados personalizados para seu pet, no conforto da sua casa. Vila Andrade — São Paulo." },
+      {
+        property: "og:description",
+        content:
+          "Cuidados personalizados para seu pet, no conforto da sua casa. Vila Andrade — São Paulo.",
+      },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
       { property: "og:image", content: HERO_IMAGE },
-      { property: "og:image:alt", content: "Ana Clara sorrindo enquanto faz carinho em um cachorro golden" },
+      {
+        property: "og:image:alt",
+        content: "Ana Clara sorrindo enquanto faz carinho em um cachorro golden",
+      },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Pet Sitter em Vila Andrade | Ana Clara" },
-      { name: "twitter:description", content: "Visitas, passeios, alimentação e medicação com fotos e vídeos em tempo real." },
+      {
+        name: "twitter:description",
+        content: "Visitas, passeios, alimentação e medicação com fotos e vídeos em tempo real.",
+      },
       { name: "twitter:image", content: HERO_IMAGE },
     ],
     links: [
       { rel: "canonical", href: "/" },
       { rel: "preconnect", href: "https://images.unsplash.com", crossOrigin: "" },
-      { rel: "preload", as: "image", href: HERO_IMAGE, fetchpriority: "high" } as unknown as Record<string, string>,
+      { rel: "preload", as: "image", href: HERO_IMAGE, fetchpriority: "high" } as unknown as Record<
+        string,
+        string
+      >,
     ],
     scripts: [
       { type: "application/ld+json", children: JSON.stringify(localBusinessJsonLd) },

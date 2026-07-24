@@ -9,13 +9,26 @@ export function Header() {
           <span className="grid h-9 w-9 place-items-center rounded-full bg-peach-100 text-peach-700">
             <PawPrint size={18} />
           </span>
-          <span>Ana Clara <span className="hidden text-ink-500 sm:inline">· Pet Sitter</span></span>
+          <span>
+            Ana Clara <span className="hidden text-ink-500 sm:inline">· Pet Sitter</span>
+          </span>
         </a>
-        <nav aria-label="Navegação principal" className="hidden gap-6 text-sm font-medium text-ink-700 md:flex">
-          <a href="#servicos" className="hover:text-sky-800">Serviços</a>
-          <a href="#como-funciona" className="hover:text-sky-800">Como funciona</a>
-          <a href="#depoimentos" className="hover:text-sky-800">Depoimentos</a>
-          <a href="#faq" className="hover:text-sky-800">FAQ</a>
+        <nav
+          aria-label="Navegação principal"
+          className="hidden gap-6 text-sm font-medium text-ink-700 md:flex"
+        >
+          <a href="#servicos" className="hover:text-sky-800">
+            Serviços
+          </a>
+          <a href="#como-funciona" className="hover:text-sky-800">
+            Como funciona
+          </a>
+          <a href="#depoimentos" className="hover:text-sky-800">
+            Depoimentos
+          </a>
+          <a href="#faq" className="hover:text-sky-800">
+            FAQ
+          </a>
         </nav>
         <a
           href={WHATSAPP_URL}

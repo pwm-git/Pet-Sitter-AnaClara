@@ -2,11 +2,31 @@ import { MessageCircle, CalendarCheck, KeyRound, PawPrint, Bell } from "lucide-r
 import { SectionEyebrow } from "./ui";
 
 const steps = [
-  { icon: MessageCircle, title: "Você chama no WhatsApp", text: "Me conta sobre seu pet e as datas." },
-  { icon: CalendarCheck, title: "Conversa gratuita", text: "Presencial ou por vídeo, pra nos conhecermos." },
-  { icon: KeyRound, title: "Fechamos o combinado", text: "Chaves, rotina e contatos de emergência." },
-  { icon: PawPrint, title: "Começam as visitas", text: "No horário combinado, com registro completo." },
-  { icon: Bell, title: "Você acompanha em tempo real", text: "Fotos, vídeos e mensagens a cada visita." },
+  {
+    icon: MessageCircle,
+    title: "Você chama no WhatsApp",
+    text: "Me conta sobre seu pet e as datas.",
+  },
+  {
+    icon: CalendarCheck,
+    title: "Conversa gratuita",
+    text: "Presencial ou por vídeo, pra nos conhecermos.",
+  },
+  {
+    icon: KeyRound,
+    title: "Fechamos o combinado",
+    text: "Chaves, rotina e contatos de emergência.",
+  },
+  {
+    icon: PawPrint,
+    title: "Começam as visitas",
+    text: "No horário combinado, com registro completo.",
+  },
+  {
+    icon: Bell,
+    title: "Você acompanha em tempo real",
+    text: "Fotos, vídeos e mensagens a cada visita.",
+  },
 ];
 
 export function HowItWorks() {
@@ -21,7 +41,10 @@ export function HowItWorks() {
         </div>
         <ol className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
           {steps.map((s, i) => (
-            <li key={s.title} className="relative rounded-3xl bg-card p-6 shadow-[var(--shadow-sm)]">
+            <li
+              key={s.title}
+              className="relative rounded-3xl bg-card p-6 shadow-[var(--shadow-sm)]"
+            >
               <div className="mb-3 flex items-center gap-3">
                 <span className="grid h-10 w-10 place-items-center rounded-full bg-sky-600 font-heading text-sm font-bold text-white">
                   {String(i + 1).padStart(2, "0")}

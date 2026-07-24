@@ -6,7 +6,9 @@ export function FinalCta() {
     <section aria-labelledby="cta-title" className="px-4 py-20 sm:px-6 sm:py-28">
       <div
         className="mx-auto max-w-5xl overflow-hidden rounded-[2rem] px-8 py-16 text-center text-white shadow-[var(--shadow-lg)] sm:px-14"
-        style={{ background: "linear-gradient(135deg, oklch(0.6 0.16 240) 0%, oklch(0.78 0.13 28) 100%)" }}
+        style={{
+          background: "linear-gradient(135deg, oklch(0.6 0.16 240) 0%, oklch(0.78 0.13 28) 100%)",
+        }}
       >
         <h2 id="cta-title" className="text-[clamp(1.75rem,3.5vw,2.75rem)] font-extrabold">
           Seu pet merece continuar em casa, cercado do que ele conhece.
@@ -26,7 +28,9 @@ export function FinalCta() {
           </a>
         </div>
         <p className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm text-white/85">
-          <span className="flex items-center gap-1.5"><Clock size={14} /> Respondo em até 30 minutos</span>
+          <span className="flex items-center gap-1.5">
+            <Clock size={14} /> Respondo em até 30 minutos
+          </span>
           <span>·</span>
           <span>Seg a sáb, 8h às 20h</span>
         </p>

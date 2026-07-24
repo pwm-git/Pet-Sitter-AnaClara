@@ -18,7 +18,10 @@ export function Faq() {
           {faqData.map((f, i) => {
             const isOpen = open === i;
             return (
-              <div key={f.q} className="overflow-hidden rounded-2xl border border-border/60 bg-card shadow-[var(--shadow-sm)]">
+              <div
+                key={f.q}
+                className="overflow-hidden rounded-2xl border border-border/60 bg-card shadow-[var(--shadow-sm)]"
+              >
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : i)}
@@ -33,7 +36,10 @@ export function Faq() {
                   />
                 </button>
                 {isOpen && (
-                  <div id={`faq-panel-${i}`} className="border-t border-border/60 px-5 py-4 text-ink-700">
+                  <div
+                    id={`faq-panel-${i}`}
+                    className="border-t border-border/60 px-5 py-4 text-ink-700"
+                  >
                     {f.a}
                   </div>
                 )}
