@@ -490,7 +490,7 @@ function Differentiators() {
     { icon: Bell, title: "Comunicação em tempo real", text: "Nada de esperar o fim do dia pra saber do seu pet.", span: "" },
     { icon: Camera, title: "Fotos e vídeos em toda visita", text: "Sem exceção.", span: "" },
     { icon: PawPrint, title: "Cuidado individualizado", text: "Poucos tutores por semana.", span: "" },
-    { icon: ShieldCheck, title: "Segurança total", text: "Identidade verificada, referências e contrato simples.", span: "md:col-span-2" },
+    { icon: ShieldCheck, title: "Confiança e transparência", text: "Combinado claro, referências e contrato simples desde a primeira conversa.", span: "md:col-span-2" },
   ];
   return (
     <section aria-labelledby="dif-title" className="py-20 sm:py-28">
