@@ -395,11 +395,12 @@ function Services() {
       accent: "bg-peach-100 text-peach-700",
       items: [
         "Administração de medicamentos",
-        "Aplicação de insulina",
+        "Cuidados com pets com necessidades especiais",
         "Cuidado com pets idosos",
-        "Regas de plantas e casa",
-        "Relatório escrito ao final",
+        "Passeios na área pet ou na rua",
+        "Relatório com fotos e vídeos ao final",
       ],
+
       featured: true,
     },
   ];
