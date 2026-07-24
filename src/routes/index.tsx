@@ -64,11 +64,12 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Pet Sitter em Vila Andrade | Ana Clara — Cuidado em Casa" },
-      { name: "description", content: "Pet Sitter em Vila Andrade e região. Visitas, passeios, alimentação e medicação com fotos e vídeos em tempo real. Agende no WhatsApp." },
+      { title: "Pet Sitter em Vila Andrade | Ana Clara — Cuidados no Conforto da Sua Casa" },
+      { name: "description", content: "Pet Sitter em Vila Andrade: cuidados personalizados para seu pet no conforto da sua casa. Visitas diárias, passeios, medicação e relatórios com fotos e vídeos. Agende no WhatsApp." },
       { name: "robots", content: "index, follow" },
       { property: "og:title", content: "Pet Sitter em Vila Andrade | Ana Clara" },
-      { property: "og:description", content: "Cuidado individual, na sua casa, com fotos e vídeos em tempo real. Vila Andrade e região." },
+      { property: "og:description", content: "Cuidados personalizados para seu pet, no conforto da sua casa. Vila Andrade — São Paulo." },
+
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
       { property: "og:image", content: HERO_IMAGE },
