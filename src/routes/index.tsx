@@ -730,6 +730,16 @@ const bodyHtml = `
         </div>
     </footer>
 
+    <!-- Botão flutuante WhatsApp (Passo D) -->
+    <a id="whatsapp-fab"
+       class="whatsapp-fab"
+       href="https://wa.me/5511987654321?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20servi%C3%A7o%20para%20meu%20pet."
+       target="_blank"
+       rel="noopener"
+       aria-label="Falar no WhatsApp">
+        <span aria-hidden="true">💬</span>
+    </a>
+
     <iframe src="https://app.gptmaker.ai/widget/3EB1EF96AD98C38C824B36EC3DEDCDF8/iframe"
             title="Assistente virtual Patinhas"
             width="100%"

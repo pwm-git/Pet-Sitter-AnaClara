@@ -1247,3 +1247,134 @@ button {
 
 /* Garantir que <figure> na galeria não herde margens do reset */
 figure { margin: 0; }
+
+/* ==========================================
+   PASSO C — DESIGN MODERNO (aditivo, mesma paleta)
+   Tokens fluidos, sombras em camadas, glass header, grids auto-fit.
+   ========================================== */
+:root {
+    /* Tipografia fluida (clamp) — escala responsiva sem media queries */
+    --fs-hero:      clamp(2.25rem, 4.5vw + 1rem, 4rem);
+    --fs-section:   clamp(1.75rem, 2.2vw + 1rem, 2.75rem);
+    --fs-lead:      clamp(1rem, 0.4vw + 0.95rem, 1.25rem);
+
+    /* Espaçamentos fluidos */
+    --space-fluid-md: clamp(1.25rem, 2vw + 0.5rem, 2rem);
+    --space-fluid-lg: clamp(2rem, 4vw + 0.5rem, 4rem);
+    --space-fluid-xl: clamp(3rem, 6vw + 1rem, 6rem);
+
+    /* Sombras em camadas (mais suaves + realistas) */
+    --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04),
+                 0 1px 3px rgba(15, 23, 42, 0.06);
+    --shadow-md: 0 4px 6px -2px rgba(15, 23, 42, 0.05),
+                 0 10px 20px -6px rgba(15, 23, 42, 0.08);
+    --shadow-lg: 0 10px 20px -8px rgba(15, 23, 42, 0.08),
+                 0 24px 48px -16px rgba(33, 150, 243, 0.18);
+}
+
+/* Tipografia fluida aplicada aos títulos existentes (sem quebrar layout) */
+.hero-title    { font-size: var(--fs-hero); }
+.section-title { font-size: var(--fs-section); }
+.hero-description,
+.section-description { font-size: var(--fs-lead); }
+
+/* Sombras em camadas: usa nova escala mantendo variáveis antigas como fallback */
+.service-card,
+.testimonial-card,
+.team-member,
+.faq-item,
+.contact-card {
+    box-shadow: var(--shadow-md);
+    transition: transform .35s cubic-bezier(.2,.8,.2,1),
+                box-shadow .35s cubic-bezier(.2,.8,.2,1);
+}
+.service-card:hover,
+.testimonial-card:hover,
+.team-member:hover,
+.contact-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+}
+
+/* Header com glass effect (mantém cor de fundo como fallback) */
+.header {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: saturate(160%) blur(14px);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+    box-shadow: var(--shadow-sm);
+}
+.header.scrolled {
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: var(--shadow-md);
+}
+
+/* Grids: passa a auto-fit para responsividade sem breakpoints extras */
+.services-grid,
+.gallery-grid,
+.team-grid,
+.contact-grid {
+    display: grid;
+    gap: var(--space-fluid-md);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+}
+
+/* Botões: leve elevação */
+.btn-primary,
+.btn-secondary { box-shadow: var(--shadow-sm); }
+.btn-primary:hover,
+.btn-secondary:hover { box-shadow: var(--shadow-md); }
+
+/* ==========================================
+   PASSO D — INTERAÇÕES
+   Botão flutuante WhatsApp + prefers-reduced-motion.
+   ========================================== */
+.whatsapp-fab {
+    position: fixed;
+    right: clamp(1rem, 3vw, 2rem);
+    bottom: clamp(1rem, 3vw, 2rem);
+    z-index: 999;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    line-height: 1;
+    text-decoration: none;
+    box-shadow: 0 10px 25px -8px rgba(37, 211, 102, 0.55),
+                0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+.whatsapp-fab:hover,
+.whatsapp-fab:focus-visible {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 14px 30px -8px rgba(37, 211, 102, 0.7),
+                0 6px 14px rgba(0, 0, 0, 0.18);
+}
+.whatsapp-fab::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid rgba(37, 211, 102, 0.5);
+    animation: fab-pulse 2.2s ease-out infinite;
+}
+@keyframes fab-pulse {
+    0%   { transform: scale(0.9); opacity: 0.9; }
+    100% { transform: scale(1.4); opacity: 0;   }
+}
+
+/* Respeita usuários que preferem menos movimento */
+@media (prefers-reduced-motion: reduce) {
+    * , *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+    .whatsapp-fab::after { display: none; }
+}
+
