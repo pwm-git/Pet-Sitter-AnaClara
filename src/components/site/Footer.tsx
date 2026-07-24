@@ -64,9 +64,14 @@ export function Footer() {
       </div>
       <div className="border-t border-border/60">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-6 text-xs text-ink-500 sm:flex-row sm:px-6">
-          <p>© {new Date().getFullYear()}</p>  <p>Feito por:<a>contatobom.com</a>®</p>
+          <p>
+            © {new Date().getFullYear()} — Todos os direitos reservados{' '}
+            <a href="https://contatobom.com" className="text-sky-700 hover:text-sky-900">
+              contatobom.com
+            </a>
+          </p>
           <p className="flex items-center gap-1">
-            Cuidando de pets em Vila Andrade{" "}
+            Cuidando de pets em Vila Andrade{' '}
             <Heart size={12} className="fill-peach-500 text-peach-500" />
           </p>
         </div>
