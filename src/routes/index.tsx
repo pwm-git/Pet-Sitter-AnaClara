@@ -1,26 +1,29 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
 
+// URL absoluta da imagem hero (também usada como og:image / twitter:image).
+const HERO_IMAGE =
+  "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1200&q=80";
+
 const bodyHtml = `
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
     <!-- ========================================
          HEADER / MENU NAVEGAÇÃO
          ======================================== -->
-    <header class="header" id="header">
+    <header class="header" id="header" role="banner">
         <div class="container">
             <div class="header-content">
 
-                <!-- ========== LOGO (EDITÁVEL) ========== -->
-                <a href="#home" class="logo">
-                    <span class="logo-icon">🐾</span>
+                <a href="#home" class="logo" aria-label="Patinhas Pet Shop e Vet - Página inicial">
+                    <span class="logo-icon" aria-hidden="true">🐾</span>
                     <span class="logo-text">
                         <span class="logo-name">Patinhas</span>
-                        <span class="logo-tagline">Pet Shop & Vet</span>
+                        <span class="logo-tagline">Pet Shop &amp; Vet</span>
                     </span>
                 </a>
 
-                <!-- ========== MENU DESKTOP (EDITÁVEL) ========== -->
-                <nav class="nav" id="nav-menu">
+                <nav class="nav" id="nav-menu" aria-label="Navegação principal">
                     <ul class="nav-list">
                         <li><a href="#home" class="nav-link">Início</a></li>
                         <li><a href="#sobre" class="nav-link">Sobre</a></li>
@@ -31,66 +34,67 @@ const bodyHtml = `
                     </ul>
                 </nav>
 
-                <!-- ========== BOTÃO CTA HEADER (EDITÁVEL) ========== -->
                 <a href="#contato" class="btn btn-primary btn-header">Agendar Consulta</a>
 
-                <!-- ========== BOTÃO MENU MOBILE ========== -->
-                <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <button class="menu-toggle" id="menu-toggle"
+                        aria-label="Abrir menu de navegação"
+                        aria-expanded="false"
+                        aria-controls="nav-menu">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
                 </button>
             </div>
         </div>
     </header>
 
+    <main id="conteudo">
+
     <!-- ========================================
          SEÇÃO HERO / BANNER PRINCIPAL
          ======================================== -->
-    <section class="hero" id="home">
-        <!-- ========== BACKGROUND COM OVERLAY (EDITÁVEL) ========== -->
-        <div class="hero-background"
+    <section class="hero" id="home" aria-labelledby="hero-title">
+        <div class="hero-background" role="presentation"
             style="background-image: url('https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=1920&q=80');">
         </div>
-        <div class="hero-overlay"></div>
+        <div class="hero-overlay" aria-hidden="true"></div>
 
         <div class="container">
             <div class="hero-content">
 
-                <!-- ========== TEXTO HERO (EDITÁVEL) ========== -->
                 <div class="hero-text">
-                    <h1 class="hero-title">
+                    <h1 class="hero-title" id="hero-title">
                         Cuidando do seu <span class="highlight">melhor amigo</span> com todo amor e carinho
                     </h1>
                     <p class="hero-description">
-                        Pet Shop Cão Boy e Clínica Veterinária completa com profissionais especializados, equipamentos
+                        Pet Shop e Clínica Veterinária completa com profissionais especializados, equipamentos
                         modernos e muito carinho para seu pet!
                     </p>
 
-                    <!-- ========== BOTÕES CTA (EDITÁVEL) ========== -->
                     <div class="hero-buttons">
                         <a href="#servicos" class="btn btn-primary btn-large">Ver Serviços</a>
                         <a href="#contato" class="btn btn-secondary btn-large">Agendar Agora</a>
                     </div>
 
-                    <!-- ========== BADGES/DESTAQUES (EDITÁVEL) ========== -->
                     <div class="hero-badges">
                         <div class="badge">
-                            <span class="badge-icon">⭐</span>
+                            <span class="badge-icon" aria-hidden="true">⭐</span>
                             <span class="badge-text">+10 anos de experiência</span>
                         </div>
                         <div class="badge">
-                            <span class="badge-icon">❤️</span>
+                            <span class="badge-icon" aria-hidden="true">❤️</span>
                             <span class="badge-text">+5000 pets atendidos</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- ========== IMAGEM HERO (EDITÁVEL) ========== -->
                 <div class="hero-image">
                     <div class="hero-image-container">
-                        <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80"
-                            alt="Cachorro fofo">
+                        <img src="${HERO_IMAGE}"
+                             alt="Cachorro golden retriever sorrindo, atendido na Patinhas Pet Shop"
+                             width="600" height="600"
+                             fetchpriority="high"
+                             decoding="async">
                     </div>
                 </div>
             </div>
@@ -100,22 +104,22 @@ const bodyHtml = `
     <!-- ========================================
          SEÇÃO SOBRE NÓS
          ======================================== -->
-    <section class="sobre" id="sobre">
+    <section class="sobre" id="sobre" aria-labelledby="sobre-title">
         <div class="container">
             <div class="sobre-content">
 
-                <!-- ========== IMAGEM SOBRE (EDITÁVEL) ========== -->
                 <div class="sobre-image">
                     <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=600&q=80"
-                        alt="Pet Shop Interior">
+                         alt="Interior aconchegante do pet shop Patinhas com pets sendo atendidos"
+                         width="600" height="400"
+                         loading="lazy" decoding="async">
                 </div>
 
-                <!-- ========== TEXTO SOBRE (EDITÁVEL) ========== -->
                 <div class="sobre-text">
                     <span class="section-label">Sobre Nós</span>
-                    <h2 class="section-title">Mais de 10 anos cuidando com amor do seu pet</h2>
+                    <h2 class="section-title" id="sobre-title">Mais de 10 anos cuidando com amor do seu pet</h2>
                     <p class="sobre-description">
-                        A <strong>Patinhas Pet Shop & Vet</strong> nasceu do amor incondicional pelos animais. Somos uma
+                        A <strong>Patinhas Pet Shop &amp; Vet</strong> nasceu do amor incondicional pelos animais. Somos uma
                         clínica veterinária e pet shop completa, com equipe especializada e equipamentos modernos para
                         oferecer o melhor atendimento.
                     </p>
@@ -124,22 +128,21 @@ const bodyHtml = `
                         humanizado e serviços de excelência.
                     </p>
 
-                    <!-- ========== LISTA DE DIFERENCIAIS (EDITÁVEL) ========== -->
                     <ul class="sobre-list">
                         <li>
-                            <span class="list-icon">✓</span>
+                            <span class="list-icon" aria-hidden="true">✓</span>
                             <span>Veterinários especializados e experientes</span>
                         </li>
                         <li>
-                            <span class="list-icon">✓</span>
+                            <span class="list-icon" aria-hidden="true">✓</span>
                             <span>Equipamentos modernos e tecnologia de ponta</span>
                         </li>
                         <li>
-                            <span class="list-icon">✓</span>
+                            <span class="list-icon" aria-hidden="true">✓</span>
                             <span>Atendimento 24 horas para emergências</span>
                         </li>
                         <li>
-                            <span class="list-icon">✓</span>
+                            <span class="list-icon" aria-hidden="true">✓</span>
                             <span>Ambiente confortável e acolhedor</span>
                         </li>
                     </ul>
@@ -148,27 +151,37 @@ const bodyHtml = `
                 </div>
             </div>
 
-            <!-- ========== GALERIA DE FOTOS (EDITÁVEL) ========== -->
-            <div class="galeria">
-                <div class="galeria-item galeria-item-large">
+            <div class="galeria" role="list" aria-label="Galeria de fotos">
+                <figure class="galeria-item galeria-item-large" role="listitem">
                     <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&q=80"
-                        alt="Cachorros brincando">
-                </div>
-                <div class="galeria-item">
+                         alt="Grupo de cachorros felizes brincando juntos"
+                         width="800" height="600"
+                         loading="lazy" decoding="async">
+                </figure>
+                <figure class="galeria-item" role="listitem">
                     <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=400&q=80"
-                        alt="Cachorro sendo tosado">
-                </div>
-                <div class="galeria-item">
+                         alt="Cachorro recebendo tosa profissional"
+                         width="400" height="300"
+                         loading="lazy" decoding="async">
+                </figure>
+                <figure class="galeria-item" role="listitem">
                     <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=400&q=80"
-                        alt="Bulldog fofo">
-                </div>
-                <div class="galeria-item">
-                    <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&q=80" alt="Gato">
-                </div>
-                <div class="galeria-item">
+                         alt="Bulldog com expressão simpática"
+                         width="400" height="300"
+                         loading="lazy" decoding="async">
+                </figure>
+                <figure class="galeria-item" role="listitem">
+                    <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&q=80"
+                         alt="Gato descansando tranquilamente"
+                         width="400" height="300"
+                         loading="lazy" decoding="async">
+                </figure>
+                <figure class="galeria-item" role="listitem">
                     <img src="https://images.unsplash.com/photo-1601758124510-52d02ddb7cbd?w=400&q=80"
-                        alt="Pet sendo cuidado">
-                </div>
+                         alt="Veterinário cuidando de um pet"
+                         width="400" height="300"
+                         loading="lazy" decoding="async">
+                </figure>
             </div>
         </div>
     </section>
@@ -176,98 +189,104 @@ const bodyHtml = `
     <!-- ========================================
          SEÇÃO SERVIÇOS
          ======================================== -->
-    <section class="servicos" id="servicos">
+    <section class="servicos" id="servicos" aria-labelledby="servicos-title">
         <div class="container">
 
-            <!-- ========== TÍTULO DA SEÇÃO (EDITÁVEL) ========== -->
             <div class="section-header">
                 <span class="section-label">Nossos Serviços</span>
-                <h2 class="section-title">Tudo que seu pet precisa em um só lugar</h2>
+                <h2 class="section-title" id="servicos-title">Tudo que seu pet precisa em um só lugar</h2>
                 <p class="section-description">
                     Oferecemos serviços completos de pet shop e clínica veterinária para cuidar da saúde e bem-estar do
                     seu melhor amigo.
                 </p>
             </div>
 
-            <!-- ========== GRID DE SERVIÇOS (EDITÁVEL) ========== -->
             <div class="servicos-grid">
 
-                <!-- Serviço 1 -->
-                <div class="servico-card">
+                <article class="servico-card">
                     <div class="servico-image">
                         <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=400&q=80"
-                            alt="Banho e Tosa">
+                             alt="Cachorro tomando banho no serviço de banho e tosa"
+                             width="400" height="300"
+                             loading="lazy" decoding="async">
                     </div>
-                    <div class="servico-icon">🛁</div>
+                    <div class="servico-icon" aria-hidden="true">🛁</div>
                     <h3 class="servico-title">Banho e Tosa</h3>
                     <p class="servico-description">
                         Banho completo, tosa higiênica e estética com produtos de qualidade e profissionais
                         especializados.
                     </p>
-                </div>
+                </article>
 
-                <!-- Serviço 2 -->
-                <div class="servico-card">
+                <article class="servico-card">
                     <div class="servico-image">
                         <img src="https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?w=400&q=80"
-                            alt="Veterinário">
+                             alt="Veterinária examinando um cachorro em consulta"
+                             width="400" height="300"
+                             loading="lazy" decoding="async">
                     </div>
-                    <div class="servico-icon">🩺</div>
+                    <div class="servico-icon" aria-hidden="true">🩺</div>
                     <h3 class="servico-title">Consultas Veterinárias</h3>
                     <p class="servico-description">
                         Atendimento clínico geral com veterinários experientes para cuidar da saúde do seu pet.
                     </p>
-                </div>
+                </article>
 
-                <!-- Serviço 3 -->
-                <div class="servico-card">
+                <article class="servico-card">
                     <div class="servico-image">
                         <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400&q=80"
-                            alt="Produtos">
+                             alt="Prateleira com produtos e acessórios para pets"
+                             width="400" height="300"
+                             loading="lazy" decoding="async">
                     </div>
-                    <div class="servico-icon">💉</div>
+                    <div class="servico-icon" aria-hidden="true">💉</div>
                     <h3 class="servico-title">Produtos Pet</h3>
                     <p class="servico-description">
                         Pet shop completo com produtos de higiene, acessórios e tudo para o bem-estar do seu pet.
                     </p>
-                </div>
+                </article>
 
-                <!-- Serviço 4 -->
-                <div class="servico-card">
+                <article class="servico-card">
                     <div class="servico-image">
-                        <img src="https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?w=400&q=80" alt="Rações">
+                        <img src="https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?w=400&q=80"
+                             alt="Rações premium selecionadas para cães e gatos"
+                             width="400" height="300"
+                             loading="lazy" decoding="async">
                     </div>
-                    <div class="servico-icon">⚕️</div>
+                    <div class="servico-icon" aria-hidden="true">⚕️</div>
                     <h3 class="servico-title">Rações Premium</h3>
                     <p class="servico-description">
                         As melhores marcas de ração e alimentação especial para todas as fases da vida do seu pet.
                     </p>
-                </div>
+                </article>
 
-                <!-- Serviço 5 -->
-                <div class="servico-card">
+                <article class="servico-card">
                     <div class="servico-image">
-                        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&q=80" alt="Hotel Pet">
+                        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&q=80"
+                             alt="Pets confortáveis hospedados no hotel pet"
+                             width="400" height="300"
+                             loading="lazy" decoding="async">
                     </div>
-                    <div class="servico-icon">🏨</div>
+                    <div class="servico-icon" aria-hidden="true">🏨</div>
                     <h3 class="servico-title">Hotel Pet</h3>
                     <p class="servico-description">
                         Hospedagem com conforto e segurança para seu pet enquanto você viaja tranquilo.
                     </p>
-                </div>
+                </article>
 
-                <!-- Serviço 6 -->
-                <div class="servico-card">
+                <article class="servico-card">
                     <div class="servico-image">
                         <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&q=80"
-                            alt="Adestramento">
+                             alt="Cachorro em sessão de adestramento profissional"
+                             width="400" height="300"
+                             loading="lazy" decoding="async">
                     </div>
-                    <div class="servico-icon">🛍️</div>
+                    <div class="servico-icon" aria-hidden="true">🛍️</div>
                     <h3 class="servico-title">Adestramento</h3>
                     <p class="servico-description">
                         Treinamento profissional para educação, comportamento e socialização do seu pet.
                     </p>
-                </div>
+                </article>
             </div>
         </div>
     </section>
@@ -275,65 +294,71 @@ const bodyHtml = `
     <!-- ========================================
          SEÇÃO DESTAQUES / DIFERENCIAIS
          ======================================== -->
-    <section class="destaques">
+    <section class="destaques" aria-labelledby="destaques-title">
         <div class="container">
 
-            <!-- ========== TÍTULO DA SEÇÃO (EDITÁVEL) ========== -->
             <div class="section-header">
                 <span class="section-label">Por Que Escolher a Patinhas?</span>
-                <h2 class="section-title">Nossos Diferenciais</h2>
+                <h2 class="section-title" id="destaques-title">Nossos Diferenciais</h2>
             </div>
 
-            <!-- ========== GRID DE DESTAQUES (EDITÁVEL) ========== -->
             <div class="destaques-grid">
 
-                <div class="destaque-card">
+                <article class="destaque-card">
                     <div class="destaque-image">
                         <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&q=80"
-                            alt="Pets felizes">
+                             alt="Equipe especializada cuidando de pets felizes"
+                             width="400" height="300"
+                             loading="lazy" decoding="async">
                     </div>
-                    <div class="destaque-number">01</div>
+                    <div class="destaque-number" aria-hidden="true">01</div>
                     <h3 class="destaque-title">Equipe Especializada</h3>
                     <p class="destaque-description">
                         Veterinários formados e atualizados com as melhores práticas da medicina veterinária.
                     </p>
-                </div>
+                </article>
 
-                <div class="destaque-card">
+                <article class="destaque-card">
                     <div class="destaque-image">
                         <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=400&q=80"
-                            alt="Atendimento">
+                             alt="Atendimento 24 horas para emergências pet"
+                             width="400" height="300"
+                             loading="lazy" decoding="async">
                     </div>
-                    <div class="destaque-number">02</div>
+                    <div class="destaque-number" aria-hidden="true">02</div>
                     <h3 class="destaque-title">Atendimento 24h</h3>
                     <p class="destaque-description">
                         Pronto atendimento veterinário disponível 24 horas para emergências.
                     </p>
-                </div>
+                </article>
 
-                <div class="destaque-card">
+                <article class="destaque-card">
                     <div class="destaque-image">
                         <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=400&q=80"
-                            alt="Tecnologia">
+                             alt="Equipamentos veterinários modernos"
+                             width="400" height="300"
+                             loading="lazy" decoding="async">
                     </div>
-                    <div class="destaque-number">03</div>
+                    <div class="destaque-number" aria-hidden="true">03</div>
                     <h3 class="destaque-title">Tecnologia Moderna</h3>
                     <p class="destaque-description">
                         Equipamentos de última geração para diagnósticos precisos e tratamentos eficazes.
                     </p>
-                </div>
+                </article>
 
-                <div class="destaque-card">
+                <article class="destaque-card">
                     <div class="destaque-image">
                         <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&q=80"
-                            alt="Ambiente">
+                             alt="Ambiente acolhedor para pets e tutores"
+                             width="400" height="300"
+                             loading="lazy" decoding="async">
                     </div>
-                    <div class="destaque-number">04</div>
+                    <div class="destaque-number" aria-hidden="true">04</div>
                     <h3 class="destaque-title">Ambiente Acolhedor</h3>
                     <p class="destaque-description">
                         Espaço projetado para o conforto dos pets e tranquilidade dos tutores.
                     </p>
-                </div>
+                </article>
             </div>
         </div>
     </section>
@@ -341,18 +366,17 @@ const bodyHtml = `
     <!-- ========================================
          SEÇÃO BENEFÍCIOS
          ======================================== -->
-    <section class="beneficios">
+    <section class="beneficios" aria-labelledby="beneficios-title">
         <div class="container">
             <div class="beneficios-content">
 
-                <!-- ========== TEXTO BENEFÍCIOS (EDITÁVEL) ========== -->
                 <div class="beneficios-text">
                     <span class="section-label">Benefícios</span>
-                    <h2 class="section-title">Vantagens de cuidar do seu pet conosco</h2>
+                    <h2 class="section-title" id="beneficios-title">Vantagens de cuidar do seu pet conosco</h2>
 
                     <div class="beneficios-list">
                         <div class="beneficio-item">
-                            <div class="beneficio-icon">🎯</div>
+                            <div class="beneficio-icon" aria-hidden="true">🎯</div>
                             <div class="beneficio-text">
                                 <h3>Planos de Saúde Pet</h3>
                                 <p>Consultas ilimitadas, descontos em serviços e muito mais com nossos planos.</p>
@@ -360,7 +384,7 @@ const bodyHtml = `
                         </div>
 
                         <div class="beneficio-item">
-                            <div class="beneficio-icon">📱</div>
+                            <div class="beneficio-icon" aria-hidden="true">📱</div>
                             <div class="beneficio-text">
                                 <h3>Agendamento Online</h3>
                                 <p>Agende consultas e serviços pelo WhatsApp de forma rápida e prática.</p>
@@ -368,7 +392,7 @@ const bodyHtml = `
                         </div>
 
                         <div class="beneficio-item">
-                            <div class="beneficio-icon">🚗</div>
+                            <div class="beneficio-icon" aria-hidden="true">🚗</div>
                             <div class="beneficio-text">
                                 <h3>Estacionamento Grátis</h3>
                                 <p>Estacionamento amplo e seguro para sua comodidade.</p>
@@ -376,7 +400,7 @@ const bodyHtml = `
                         </div>
 
                         <div class="beneficio-item">
-                            <div class="beneficio-icon">💳</div>
+                            <div class="beneficio-icon" aria-hidden="true">💳</div>
                             <div class="beneficio-text">
                                 <h3>Parcelamento Facilitado</h3>
                                 <p>Aceitamos todas as formas de pagamento com parcelamento em até 12x.</p>
@@ -385,10 +409,9 @@ const bodyHtml = `
                     </div>
                 </div>
 
-                <!-- ========== IMAGEM BENEFÍCIOS (EDITÁVEL) ========== -->
                 <div class="beneficios-image">
                     <div class="beneficios-image-placeholder">
-                        <span class="beneficios-emoji">🐶💙</span>
+                        <span class="beneficios-emoji" aria-hidden="true">🐶💙</span>
                     </div>
                 </div>
             </div>
@@ -398,77 +421,84 @@ const bodyHtml = `
     <!-- ========================================
          SEÇÃO DEPOIMENTOS
          ======================================== -->
-    <section class="depoimentos" id="depoimentos">
+    <section class="depoimentos" id="depoimentos" aria-labelledby="depoimentos-title">
         <div class="container">
 
-            <!-- ========== TÍTULO DA SEÇÃO (EDITÁVEL) ========== -->
             <div class="section-header">
                 <span class="section-label">Depoimentos</span>
-                <h2 class="section-title">O que dizem nossos clientes</h2>
+                <h2 class="section-title" id="depoimentos-title">O que dizem nossos clientes</h2>
                 <p class="section-description">
                     A satisfação dos nossos clientes e o bem-estar dos pets são nossa maior recompensa.
                 </p>
             </div>
 
-            <!-- ========== GRID DE DEPOIMENTOS (EDITÁVEL) ========== -->
             <div class="depoimentos-grid">
 
-                <!-- Depoimento 1 -->
-                <div class="depoimento-card">
-                    <div class="depoimento-rating">⭐⭐⭐⭐⭐</div>
+                <article class="depoimento-card">
+                    <div class="depoimento-rating" role="img" aria-label="Avaliação: 5 de 5 estrelas">
+                        <span aria-hidden="true">⭐⭐⭐⭐⭐</span>
+                    </div>
                     <p class="depoimento-text">
-                        "Excelente atendimento! Minha cachorrinha ficou linda depois do banho e tosa. A equipe é super
-                        atenciosa e cuidadosa. Super recomendo!"
+                        &ldquo;Excelente atendimento! Minha cachorrinha ficou linda depois do banho e tosa. A equipe é super
+                        atenciosa e cuidadosa. Super recomendo!&rdquo;
                     </p>
                     <div class="depoimento-author">
                         <div class="author-avatar">
                             <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80"
-                                alt="Maria Silva">
+                                 alt="Retrato de Maria Silva"
+                                 width="80" height="80"
+                                 loading="lazy" decoding="async">
                         </div>
                         <div class="author-info">
-                            <h4 class="author-name">Maria Silva</h4>
+                            <h3 class="author-name">Maria Silva</h3>
                             <p class="author-pet">Tutora da Luna</p>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <!-- Depoimento 2 -->
-                <div class="depoimento-card">
-                    <div class="depoimento-rating">⭐⭐⭐⭐⭐</div>
+                <article class="depoimento-card">
+                    <div class="depoimento-rating" role="img" aria-label="Avaliação: 5 de 5 estrelas">
+                        <span aria-hidden="true">⭐⭐⭐⭐⭐</span>
+                    </div>
                     <p class="depoimento-text">
-                        "Profissionais extremamente competentes! O Dr. João salvou meu gato com um diagnóstico preciso e
-                        tratamento eficaz. Gratidão eterna!"
+                        &ldquo;Profissionais extremamente competentes! O Dr. João salvou meu gato com um diagnóstico preciso e
+                        tratamento eficaz. Gratidão eterna!&rdquo;
                     </p>
                     <div class="depoimento-author">
                         <div class="author-avatar">
                             <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80"
-                                alt="Carlos Oliveira">
+                                 alt="Retrato de Carlos Oliveira"
+                                 width="80" height="80"
+                                 loading="lazy" decoding="async">
                         </div>
                         <div class="author-info">
-                            <h4 class="author-name">Carlos Oliveira</h4>
+                            <h3 class="author-name">Carlos Oliveira</h3>
                             <p class="author-pet">Tutor do Miau</p>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <!-- Depoimento 3 -->
-                <div class="depoimento-card">
-                    <div class="depoimento-rating">⭐⭐⭐⭐⭐</div>
+                <article class="depoimento-card">
+                    <div class="depoimento-rating" role="img" aria-label="Avaliação: 5 de 5 estrelas">
+                        <span aria-hidden="true">⭐⭐⭐⭐⭐</span>
+                    </div>
                     <p class="depoimento-text">
-                        "O hotel pet é maravilhoso! Fiquei tranquila durante minha viagem sabendo que meu dog estava bem
-                        cuidado. Ele voltou feliz e saudável!"
+                        &ldquo;O hotel pet é maravilhoso! Fiquei tranquila durante minha viagem sabendo que meu dog estava bem
+                        cuidado. Ele voltou feliz e saudável!&rdquo;
                     </p>
                     <div class="depoimento-author">
                         <div class="author-avatar">
                             <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=80"
-                                alt="Ana Paula">
+                                 alt="Retrato de Ana Paula"
+                                 width="80" height="80"
+                                 loading="lazy" decoding="async">
                         </div>
                         <div class="author-info">
-                            <h4 class="author-name">Ana Paula</h4>
+                            <h3 class="author-name">Ana Paula</h3>
                             <p class="author-pet">Tutora do Thor</p>
                         </div>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
@@ -476,86 +506,90 @@ const bodyHtml = `
     <!-- ========================================
          SEÇÃO FAQ (PERGUNTAS FREQUENTES)
          ======================================== -->
-    <section class="faq" id="faq">
+    <section class="faq" id="faq" aria-labelledby="faq-title">
         <div class="container">
 
-            <!-- ========== TÍTULO DA SEÇÃO (EDITÁVEL) ========== -->
             <div class="section-header">
                 <span class="section-label">Perguntas Frequentes</span>
-                <h2 class="section-title">Tire suas dúvidas</h2>
+                <h2 class="section-title" id="faq-title">Tire suas dúvidas</h2>
             </div>
 
-            <!-- ========== LISTA FAQ ACORDEÃO (EDITÁVEL) ========== -->
             <div class="faq-list">
 
-                <!-- FAQ Item 1 -->
                 <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Quais são os horários de atendimento?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
+                    <h3>
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-panel-1" id="faq-btn-1">
+                            <span>Quais são os horários de atendimento?</span>
+                            <span class="faq-icon" aria-hidden="true">+</span>
+                        </button>
+                    </h3>
+                    <div class="faq-answer" id="faq-panel-1" role="region" aria-labelledby="faq-btn-1">
                         <p>Atendemos de segunda a sexta das 8h às 20h, sábados das 8h às 18h e domingos das 9h às 13h.
                             Para emergências, temos pronto atendimento 24 horas todos os dias.</p>
                     </div>
                 </div>
 
-                <!-- FAQ Item 2 -->
                 <div class="faq-item">
-                    <button class="faq-question">
-                        <span>É necessário agendar horário para banho e tosa?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
+                    <h3>
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-panel-2" id="faq-btn-2">
+                            <span>É necessário agendar horário para banho e tosa?</span>
+                            <span class="faq-icon" aria-hidden="true">+</span>
+                        </button>
+                    </h3>
+                    <div class="faq-answer" id="faq-panel-2" role="region" aria-labelledby="faq-btn-2">
                         <p>Sim, recomendamos agendar com antecedência para garantir o horário de sua preferência. Você
                             pode agendar pelo WhatsApp, telefone ou pessoalmente.</p>
                     </div>
                 </div>
 
-                <!-- FAQ Item 3 -->
                 <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Quais vacinas são oferecidas?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
+                    <h3>
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-panel-3" id="faq-btn-3">
+                            <span>Quais vacinas são oferecidas?</span>
+                            <span class="faq-icon" aria-hidden="true">+</span>
+                        </button>
+                    </h3>
+                    <div class="faq-answer" id="faq-panel-3" role="region" aria-labelledby="faq-btn-3">
                         <p>Oferecemos todas as vacinas recomendadas para cães e gatos: V8, V10, antirrábica, giárdia,
                             gripe canina, tríplice felina, quádrupla felina, entre outras.</p>
                     </div>
                 </div>
 
-                <!-- FAQ Item 4 -->
                 <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Como funciona o hotel pet?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
+                    <h3>
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-panel-4" id="faq-btn-4">
+                            <span>Como funciona o hotel pet?</span>
+                            <span class="faq-icon" aria-hidden="true">+</span>
+                        </button>
+                    </h3>
+                    <div class="faq-answer" id="faq-panel-4" role="region" aria-labelledby="faq-btn-4">
                         <p>O hotel pet oferece hospedagem com todo conforto e segurança. Fornecemos alimentação,
                             passeios, brincadeiras e cuidados veterinários se necessário. É necessário apresentar
                             carteira de vacinação atualizada.</p>
                     </div>
                 </div>
 
-                <!-- FAQ Item 5 -->
                 <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Aceitam plano de saúde pet?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
+                    <h3>
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-panel-5" id="faq-btn-5">
+                            <span>Aceitam plano de saúde pet?</span>
+                            <span class="faq-icon" aria-hidden="true">+</span>
+                        </button>
+                    </h3>
+                    <div class="faq-answer" id="faq-panel-5" role="region" aria-labelledby="faq-btn-5">
                         <p>Sim, aceitamos os principais planos de saúde pet do mercado. Também oferecemos nossos
                             próprios planos com consultas ilimitadas e descontos em serviços.</p>
                     </div>
                 </div>
 
-                <!-- FAQ Item 6 -->
                 <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Quais formas de pagamento são aceitas?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
+                    <h3>
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-panel-6" id="faq-btn-6">
+                            <span>Quais formas de pagamento são aceitas?</span>
+                            <span class="faq-icon" aria-hidden="true">+</span>
+                        </button>
+                    </h3>
+                    <div class="faq-answer" id="faq-panel-6" role="region" aria-labelledby="faq-btn-6">
                         <p>Aceitamos dinheiro, PIX, cartões de débito e crédito (parcelamento em até 12x). Para
                             cirurgias e procedimentos de maior valor, oferecemos condições especiais.</p>
                     </div>
@@ -567,13 +601,12 @@ const bodyHtml = `
     <!-- ========================================
          SEÇÃO CONTATO
          ======================================== -->
-    <section class="contato" id="contato">
+    <section class="contato" id="contato" aria-labelledby="contato-title">
         <div class="container">
 
-            <!-- ========== TÍTULO DA SEÇÃO (EDITÁVEL) ========== -->
             <div class="section-header">
                 <span class="section-label">Contato</span>
-                <h2 class="section-title">Entre em contato conosco</h2>
+                <h2 class="section-title" id="contato-title">Entre em contato conosco</h2>
                 <p class="section-description">
                     Estamos prontos para cuidar do seu pet. Agende uma visita ou tire suas dúvidas!
                 </p>
@@ -581,11 +614,10 @@ const bodyHtml = `
 
             <div class="contato-content">
 
-                <!-- ========== INFORMAÇÕES DE CONTATO (EDITÁVEL) ========== -->
-                <div class="contato-info">
+                <address class="contato-info">
 
                     <div class="info-item">
-                        <div class="info-icon">📍</div>
+                        <div class="info-icon" aria-hidden="true">📍</div>
                         <div class="info-text">
                             <h3>Endereço</h3>
                             <p>Rua das Patinhas, 123<br>Centro - São Paulo/SP<br>CEP: 01234-567</p>
@@ -593,23 +625,29 @@ const bodyHtml = `
                     </div>
 
                     <div class="info-item">
-                        <div class="info-icon">📞</div>
+                        <div class="info-icon" aria-hidden="true">📞</div>
                         <div class="info-text">
                             <h3>Telefone</h3>
-                            <p>(11) 98765-4321<br>(11) 3456-7890</p>
+                            <p>
+                                <a href="tel:+5511987654321">(11) 98765-4321</a><br>
+                                <a href="tel:+551134567890">(11) 3456-7890</a>
+                            </p>
                         </div>
                     </div>
 
                     <div class="info-item">
-                        <div class="info-icon">📧</div>
+                        <div class="info-icon" aria-hidden="true">📧</div>
                         <div class="info-text">
                             <h3>E-mail</h3>
-                            <p>contato@patinhaspet.com.br<br>atendimento@patinhaspet.com.br</p>
+                            <p>
+                                <a href="mailto:contato@patinhaspet.com.br">contato@patinhaspet.com.br</a><br>
+                                <a href="mailto:atendimento@patinhaspet.com.br">atendimento@patinhaspet.com.br</a>
+                            </p>
                         </div>
                     </div>
 
                     <div class="info-item">
-                        <div class="info-icon">🕐</div>
+                        <div class="info-icon" aria-hidden="true">🕐</div>
                         <div class="info-text">
                             <h3>Horário</h3>
                             <p>Seg-Sex: 8h às 20h<br>Sábado: 8h às 18h<br>Domingo: 9h às 13h<br><strong>Emergência:
@@ -617,32 +655,32 @@ const bodyHtml = `
                         </div>
                     </div>
 
-                    <!-- ========== REDES SOCIAIS (EDITÁVEL) ========== -->
                     <div class="social-links">
-                        <a href="#" class="social-link" aria-label="Facebook">📘</a>
-                        <a href="#" class="social-link" aria-label="Instagram">📷</a>
-                        <a href="#" class="social-link" aria-label="WhatsApp">💬</a>
+                        <a href="#" class="social-link" aria-label="Siga no Facebook" rel="noopener"><span aria-hidden="true">📘</span></a>
+                        <a href="#" class="social-link" aria-label="Siga no Instagram" rel="noopener"><span aria-hidden="true">📷</span></a>
+                        <a href="#" class="social-link" aria-label="Fale conosco no WhatsApp" rel="noopener"><span aria-hidden="true">💬</span></a>
                     </div>
-                </div>
+                </address>
 
             </div>
         </div>
     </section>
 
+    </main>
+
     <!-- ========================================
          FOOTER / RODAPÉ
          ======================================== -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
 
-                <!-- ========== COLUNA 1: SOBRE (EDITÁVEL) ========== -->
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <span class="logo-icon">🐾</span>
+                        <span class="logo-icon" aria-hidden="true">🐾</span>
                         <span class="logo-text">
                             <span class="logo-name">Patinhas</span>
-                            <span class="logo-tagline">Pet Shop & Vet</span>
+                            <span class="logo-tagline">Pet Shop &amp; Vet</span>
                         </span>
                     </div>
                     <p class="footer-description">
@@ -650,8 +688,7 @@ const bodyHtml = `
                     </p>
                 </div>
 
-                <!-- ========== COLUNA 2: LINKS RÁPIDOS (EDITÁVEL) ========== -->
-                <div class="footer-col">
+                <nav class="footer-col" aria-label="Links rápidos">
                     <h3 class="footer-title">Links Rápidos</h3>
                     <ul class="footer-links">
                         <li><a href="#home">Início</a></li>
@@ -661,10 +698,9 @@ const bodyHtml = `
                         <li><a href="#faq">FAQ</a></li>
                         <li><a href="#contato">Contato</a></li>
                     </ul>
-                </div>
+                </nav>
 
-                <!-- ========== COLUNA 3: SERVIÇOS (EDITÁVEL) ========== -->
-                <div class="footer-col">
+                <nav class="footer-col" aria-label="Serviços oferecidos">
                     <h3 class="footer-title">Serviços</h3>
                     <ul class="footer-links">
                         <li><a href="#servicos">Banho e Tosa</a></li>
@@ -674,57 +710,130 @@ const bodyHtml = `
                         <li><a href="#servicos">Hotel Pet</a></li>
                         <li><a href="#servicos">Pet Shop</a></li>
                     </ul>
-                </div>
+                </nav>
 
-                <!-- ========== COLUNA 4: CONTATO (EDITÁVEL) ========== -->
                 <div class="footer-col">
                     <h3 class="footer-title">Contato</h3>
                     <ul class="footer-contact">
-                        <li>📍 Rua das Patinhas, 123<br>Centro - São Paulo/SP</li>
-                        <li>📞 (11) 98765-4321</li>
-                        <li>📧 contato@patinhaspet.com.br</li>
-                        <li>🕐 Seg-Sex: 8h-20h<br>Emergência: 24h</li>
+                        <li><span aria-hidden="true">📍</span> Rua das Patinhas, 123<br>Centro - São Paulo/SP</li>
+                        <li><span aria-hidden="true">📞</span> <a href="tel:+5511987654321">(11) 98765-4321</a></li>
+                        <li><span aria-hidden="true">📧</span> <a href="mailto:contato@patinhaspet.com.br">contato@patinhaspet.com.br</a></li>
+                        <li><span aria-hidden="true">🕐</span> Seg-Sex: 8h-20h<br>Emergência: 24h</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- ========== LINHA DE COPYRIGHT (EDITÁVEL) ========== -->
             <div class="footer-bottom">
-                <p>&copy; 2024 Patinhas Pet Shop & Vet. Todos os direitos reservados.</p>
-                <p>Desenvolvido com 💙 para pets e tutores</p>
+                <p>&copy; 2024 Patinhas Pet Shop &amp; Vet. Todos os direitos reservados.</p>
+                <p>Desenvolvido com <span aria-label="amor">💙</span> para pets e tutores</p>
             </div>
         </div>
     </footer>
 
-    <iframe src="https://app.gptmaker.ai/widget/3EB1EF96AD98C38C824B36EC3DEDCDF8/iframe" width="100%"
-        style="height: 100%; min-height: 700px" allow="microphone;" frameborder="0">
+    <iframe src="https://app.gptmaker.ai/widget/3EB1EF96AD98C38C824B36EC3DEDCDF8/iframe"
+            title="Assistente virtual Patinhas"
+            width="100%"
+            style="height: 100%; min-height: 700px"
+            allow="microphone;"
+            loading="lazy"
+            frameborder="0">
     </iframe>
-
-    <!-- ========== ARQUIVO JAVASCRIPT ========== -->
-    
-
-    
-
-
-
 `;
+
+// ---- JSON-LD estruturado (SEO local + FAQ) ----
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "VeterinaryCare",
+  name: "Patinhas Pet Shop & Vet",
+  description:
+    "Pet Shop e Clínica Veterinária completa: banho e tosa, consultas, vacinação, cirurgias, hotel pet e produtos.",
+  image: HERO_IMAGE,
+  telephone: "+55-11-98765-4321",
+  priceRange: "$$",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Rua das Patinhas, 123",
+    addressLocality: "São Paulo",
+    addressRegion: "SP",
+    postalCode: "01234-567",
+    addressCountry: "BR",
+  },
+  openingHoursSpecification: [
+    { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "08:00", closes: "20:00" },
+    { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "08:00", closes: "18:00" },
+    { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "09:00", closes: "13:00" },
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    { "@type": "Question", name: "Quais são os horários de atendimento?", acceptedAnswer: { "@type": "Answer", text: "Atendemos de segunda a sexta das 8h às 20h, sábados das 8h às 18h e domingos das 9h às 13h. Para emergências, temos pronto atendimento 24 horas todos os dias." } },
+    { "@type": "Question", name: "É necessário agendar horário para banho e tosa?", acceptedAnswer: { "@type": "Answer", text: "Sim, recomendamos agendar com antecedência para garantir o horário de sua preferência. Você pode agendar pelo WhatsApp, telefone ou pessoalmente." } },
+    { "@type": "Question", name: "Quais vacinas são oferecidas?", acceptedAnswer: { "@type": "Answer", text: "Oferecemos todas as vacinas recomendadas para cães e gatos: V8, V10, antirrábica, giárdia, gripe canina, tríplice felina, quádrupla felina, entre outras." } },
+    { "@type": "Question", name: "Como funciona o hotel pet?", acceptedAnswer: { "@type": "Answer", text: "O hotel pet oferece hospedagem com todo conforto e segurança. Fornecemos alimentação, passeios, brincadeiras e cuidados veterinários se necessário. É necessário apresentar carteira de vacinação atualizada." } },
+    { "@type": "Question", name: "Aceitam plano de saúde pet?", acceptedAnswer: { "@type": "Answer", text: "Sim, aceitamos os principais planos de saúde pet do mercado. Também oferecemos nossos próprios planos com consultas ilimitadas e descontos em serviços." } },
+    { "@type": "Question", name: "Quais formas de pagamento são aceitas?", acceptedAnswer: { "@type": "Answer", text: "Aceitamos dinheiro, PIX, cartões de débito e crédito (parcelamento em até 12x). Para cirurgias e procedimentos de maior valor, oferecemos condições especiais." } },
+  ],
+};
 
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Patinhas Pet Shop & Vet | Cuidando do seu melhor amigo com amor" },
-      { name: "description", content: "Pet Shop e Clínica Veterinária completa. Banho e tosa, consultas, vacinação, cirurgias, hotel pet e muito mais. Agende agora!" },
+      { title: "Patinhas Pet Shop & Vet — Cuidando do seu melhor amigo com amor" },
+      {
+        name: "description",
+        content:
+          "Pet Shop e Clínica Veterinária completa em São Paulo. Banho e tosa, consultas, vacinação, cirurgias, hotel pet e produtos. Agende pelo WhatsApp!",
+      },
       { property: "og:title", content: "Patinhas Pet Shop & Vet" },
-      { property: "og:description", content: "Pet Shop e Clínica Veterinária completa. Agende agora!" },
+      {
+        property: "og:description",
+        content:
+          "Pet Shop e Clínica Veterinária completa: banho e tosa, consultas, hotel pet e muito mais.",
+      },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
+      { property: "og:image", content: HERO_IMAGE },
+      { property: "og:locale", content: "pt_BR" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Patinhas Pet Shop & Vet" },
+      {
+        name: "twitter:description",
+        content:
+          "Pet Shop e Clínica Veterinária completa: banho e tosa, consultas, hotel pet e muito mais.",
+      },
+      { name: "twitter:image", content: HERO_IMAGE },
+      { name: "theme-color", content: "#2196f3" },
     ],
     links: [
-      { rel: "stylesheet", href: "/petshop.css" },
+      { rel: "canonical", href: "/" },
+      { rel: "stylesheet", href: "/assets/css/style.css" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fredoka:wght@400;500;600;700&display=swap" },
+      { rel: "preconnect", href: "https://images.unsplash.com", crossOrigin: "" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Fredoka:wght@500;600;700&display=swap",
+      },
+      {
+        rel: "preload",
+        as: "image",
+        href: HERO_IMAGE,
+        fetchpriority: "high",
+      } as unknown as Record<string, string>,
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(localBusinessJsonLd),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(faqJsonLd),
+      },
     ],
   }),
 });
@@ -732,8 +841,8 @@ export const Route = createFileRoute("/")({
 function Index() {
   useEffect(() => {
     const s = document.createElement("script");
-    s.src = "/petshop.js";
-    s.async = false;
+    s.src = "/assets/js/main.js";
+    s.defer = true;
     document.body.appendChild(s);
     return () => {
       document.body.removeChild(s);

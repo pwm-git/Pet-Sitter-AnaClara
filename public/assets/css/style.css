@@ -1215,3 +1215,35 @@ button {
         font-size: 4rem;
     }
 }
+
+/* ==========================================
+   ACESSIBILIDADE (Passo B) — sem impacto visual
+   ========================================== */
+
+/* Skip link: invisível até receber foco */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 9999;
+    padding: 0.75rem 1rem;
+    background: var(--cor-primaria);
+    color: var(--cor-branco);
+    font-weight: 600;
+    border-radius: 0 0 var(--border-radius) 0;
+}
+.skip-link:focus {
+    left: 0;
+    outline: 3px solid var(--cor-secundaria);
+    outline-offset: 2px;
+}
+
+/* Foco visível consistente para navegação por teclado */
+:focus-visible {
+    outline: 3px solid var(--cor-primaria);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Garantir que <figure> na galeria não herde margens do reset */
+figure { margin: 0; }
