@@ -43,7 +43,7 @@ const faqData = [
   { q: "Você atende em qual região?", a: "Atendo exclusivamente o bairro Vila Andrade, em São Paulo. Assim consigo manter agenda enxuta e chegar rápido em cada visita." },
   { q: "Quantas visitas por dia são recomendadas?", a: "Cães em geral 2 a 3 visitas; gatos, 1 a 2. A gente combina de acordo com a rotina do seu pet." },
   { q: "Você fica com as chaves?", a: "Sim, com contrato simples e devolução ao fim do período. Também aceito porteiro, cofre ou fechadura digital." },
-  { q: "E se acontecer uma emergência?", a: "Ligo imediatamente pra você e pro veterinário cadastrado. Tenho formação em primeiros socorros pet." },
+  { q: "E se acontecer uma emergência?", a: "Aviso você imediatamente e levo o pet ao veterinário de confiança que combinamos antes das visitas começarem." },
   { q: "Como recebo as atualizações?", a: "Por WhatsApp, com fotos e vídeos em cada visita, mais um resumo escrito ao final." },
   { q: "Você aplica medicação?", a: "Sim — via oral, tópica, colírio e insulina, com foto de cada aplicação." },
   { q: "Quanto custa?", a: "O valor depende do número de visitas, tempo e do seu bairro. Me chame no WhatsApp que envio o orçamento em minutos." },
