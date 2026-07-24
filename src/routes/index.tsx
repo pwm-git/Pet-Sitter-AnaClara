@@ -3,14 +3,14 @@ import { useState } from "react";
 import {
   Heart, Home, Camera, Pill, Cat, Sprout, PawPrint, MapPin,
   MessageCircle, CalendarCheck, KeyRound, Bell, Star, ShieldCheck,
-  Phone, Instagram, Clock, ChevronDown, Sparkles, Video, Dog,
+  Phone, Clock, ChevronDown, Sparkles, Video, Dog,
 } from "lucide-react";
 
 const HERO_IMAGE =
   "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=1200&q=80";
 
 const WHATSAPP_URL =
-  "https://wa.me/5511999999999?text=" +
+  "https://wa.me/5511996560051?text=" +
   encodeURIComponent("Oi Ana! Vim pela página e queria agendar uma visita para meu pet.");
 
 const localBusinessJsonLd = {
@@ -19,14 +19,13 @@ const localBusinessJsonLd = {
   "@id": "#ana-clara-pet-sitter",
   name: "Ana Clara Pet Sitter",
   description:
-    "Pet Sitter em Vila Andrade e região. Visitas personalizadas para cães e gatos, passeios, alimentação, medicação, fotos e vídeos em tempo real.",
+    "Pet Sitter em Vila Andrade. Cuidados personalizados para cães e gatos no conforto da sua casa: visitas diárias, passeios, alimentação, medicação e relatórios com fotos e vídeos a cada visita.",
   image: HERO_IMAGE,
-  telephone: "+55-11-99999-9999",
+  telephone: "+55-11-99656-0051",
   priceRange: "$$",
   areaServed: [
     { "@type": "City", name: "São Paulo" },
-    "Vila Andrade", "Morumbi", "Panamby", "Real Parque",
-    "Jardim Ampére", "Jardim Colombo", "Vila Suzana",
+    "Vila Andrade",
   ],
   address: {
     "@type": "PostalAddress",
@@ -37,17 +36,17 @@ const localBusinessJsonLd = {
   openingHoursSpecification: [
     { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], opens: "08:00", closes: "20:00" },
   ],
-  sameAs: ["https://instagram.com/anaclara.petsitter"],
 };
 
+
 const faqData = [
-  { q: "Você atende em qual região?", a: "Vila Andrade e bairros vizinhos: Morumbi, Panamby, Real Parque, Jardim Ampére, Jardim Colombo e Vila Suzana. Se estiver por perto, pode perguntar." },
+  { q: "Você atende em qual região?", a: "Atendo exclusivamente o bairro Vila Andrade, em São Paulo. Assim consigo manter agenda enxuta e chegar rápido em cada visita." },
   { q: "Quantas visitas por dia são recomendadas?", a: "Cães em geral 2 a 3 visitas; gatos, 1 a 2. A gente combina de acordo com a rotina do seu pet." },
   { q: "Você fica com as chaves?", a: "Sim, com contrato simples e devolução ao fim do período. Também aceito porteiro, cofre ou fechadura digital." },
-  { q: "E se acontecer uma emergência?", a: "Ligo imediatamente pra você e pro veterinário cadastrado. Tenho formação em primeiros socorros pet." },
+  { q: "E se acontecer uma emergência?", a: "Aviso você imediatamente e levo o pet ao veterinário de confiança que combinamos antes das visitas começarem." },
   { q: "Como recebo as atualizações?", a: "Por WhatsApp, com fotos e vídeos em cada visita, mais um resumo escrito ao final." },
-  { q: "Você aplica medicação?", a: "Sim — via oral, tópica, colírio e insulina, com foto de cada aplicação." },
-  { q: "Quanto custa?", a: "O valor depende do número de visitas, tempo e do seu bairro. Me chame no WhatsApp que envio o orçamento em minutos." },
+  { q: "Você aplica medicação?", a: "Sim — administração de medicamentos via oral, tópica e colírio, além de cuidados com pets com necessidades especiais. Cada aplicação vai registrada em foto." },
+  { q: "Quanto custa?", a: "O valor depende do número de visitas e do tempo de cada uma. Me chame no WhatsApp que envio o orçamento em minutos." },
   { q: "E se meu pet não gostar de você?", a: "A primeira conversa é justamente pra isso. Se não rolar química, sem problema — não contratamos." },
 ];
 
@@ -65,11 +64,12 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Pet Sitter em Vila Andrade | Ana Clara — Cuidado em Casa" },
-      { name: "description", content: "Pet Sitter em Vila Andrade e região. Visitas, passeios, alimentação e medicação com fotos e vídeos em tempo real. Agende no WhatsApp." },
+      { title: "Pet Sitter em Vila Andrade | Ana Clara — Cuidados no Conforto da Sua Casa" },
+      { name: "description", content: "Pet Sitter em Vila Andrade: cuidados personalizados para seu pet no conforto da sua casa. Visitas diárias, passeios, medicação e relatórios com fotos e vídeos. Agende no WhatsApp." },
       { name: "robots", content: "index, follow" },
       { property: "og:title", content: "Pet Sitter em Vila Andrade | Ana Clara" },
-      { property: "og:description", content: "Cuidado individual, na sua casa, com fotos e vídeos em tempo real. Vila Andrade e região." },
+      { property: "og:description", content: "Cuidados personalizados para seu pet, no conforto da sua casa. Vila Andrade — São Paulo." },
+
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
       { property: "og:image", content: HERO_IMAGE },
@@ -199,24 +199,25 @@ function Hero() {
       />
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 md:grid-cols-[1.1fr_1fr] md:py-24 md:gap-14">
         <div className="flex flex-col justify-center gap-6">
-          <SectionEyebrow>Pet Sitter em Vila Andrade e região</SectionEyebrow>
+          <SectionEyebrow>Pet Sitter em Vila Andrade</SectionEyebrow>
           <h1 className="text-[clamp(2.25rem,5vw,3.75rem)] font-extrabold text-ink-900">
-            Seu pet cuidado com carinho —{" "}
-            <span className="text-sky-800">dentro de casa</span>, do jeitinho que ele já conhece.
+            Cuidados personalizados para seu pet,{" "}
+            <span className="text-sky-800">no conforto da sua casa</span>.
           </h1>
           <p className="max-w-xl text-lg text-ink-700">
-            Enquanto você viaja ou trabalha, eu visito, alimento, passeio e envio fotos e vídeos
-            em tempo real. Sem estresse de hotel, sem casa vazia.
+            Vai viajar ou passar o dia fora? Seu pet não precisa sair de casa para ser bem cuidado.
+            Carinho, atenção e brincadeiras do jeitinho que ele gosta — com fotos e vídeos a cada visita.
           </p>
           <div className="flex flex-wrap gap-3">
             <CtaPrimary>Agendar uma visita</CtaPrimary>
             <CtaGhost>Falar com a Ana Clara</CtaGhost>
           </div>
           <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-2 text-sm text-ink-700">
-            <li className="flex items-center gap-1.5"><Star size={16} className="fill-peach-500 text-peach-500" /> 4,9 de avaliação</li>
-            <li className="flex items-center gap-1.5"><PawPrint size={16} className="text-sky-600" /> +120 pets cuidados</li>
-            <li className="flex items-center gap-1.5"><MapPin size={16} className="text-sky-600" /> Vila Andrade</li>
+            <li className="flex items-center gap-1.5"><Heart size={16} className="fill-peach-500 text-peach-500" /> Seu pet sempre cuidado com muito amor</li>
+            <li className="flex items-center gap-1.5"><MapPin size={16} className="text-sky-600" /> Vila Andrade — SP</li>
+            <li className="flex items-center gap-1.5"><Sparkles size={16} className="text-sky-600" /> Vagas limitadas</li>
           </ul>
+
         </div>
         <div className="relative">
           <div
@@ -239,12 +240,13 @@ function Hero() {
             <span className="grid h-8 w-8 place-items-center rounded-full bg-peach-100 text-peach-700">
               <Heart size={16} className="fill-peach-500 text-peach-500" />
             </span>
-            +120 famílias atendidas
+            Apaixonada por pets desde sempre
           </div>
           <div className="absolute -right-2 top-6 flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-ink-900 shadow-[var(--shadow-md)] sm:-right-4">
-            <ShieldCheck size={16} className="text-sky-600" />
-            Identidade verificada
+            <Camera size={16} className="text-sky-600" />
+            Fotos e vídeos a cada visita
           </div>
+
         </div>
       </div>
     </section>
@@ -253,11 +255,12 @@ function Hero() {
 
 function TrustBar() {
   const items = [
-    { icon: ShieldCheck, text: "Identidade verificada" },
-    { icon: Star, text: "Referências reais" },
+    { icon: Heart, text: "Cuidado com muito amor" },
+    { icon: Home, text: "No conforto da sua casa" },
     { icon: Camera, text: "Fotos e vídeos a cada visita" },
     { icon: Sparkles, text: "Primeira conversa gratuita" },
   ];
+
   return (
     <div className="border-y border-border/60 bg-peach-50">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-3 px-4 py-4 text-sm font-medium text-peach-700 sm:px-6">
@@ -334,25 +337,26 @@ function About() {
             Oi, eu sou a Ana Clara
           </h2>
           <p className="text-ink-700">
-            Cresci cercada de cães e gatos e transformei esse amor em profissão. Hoje cuido de
-            pets em Vila Andrade e região há mais de 4 anos, com formação em comportamento animal
-            e primeiros socorros pet.
+            Sou tutora de pets e apaixonada por animais desde sempre. Transformei esse amor
+            em cuidado profissional para os tutores da Vila Andrade que precisam viajar,
+            trabalhar fora ou apenas garantir mais companhia para o pet durante o dia.
           </p>
           <p className="text-ink-700">
             Cada visita minha começa com uma coisa simples: entender o seu pet. Ele é tímido?
-            Come devagar? Odeia trovão? Adora bola? Anoto tudo, respeito o ritmo dele e mando pra
-            você o registro de cada momento.
+            Come devagar? Adora bola? Prefere brincar na área pet ou na rua? Anoto tudo,
+            respeito o ritmo dele e mando pra você o registro de cada momento.
           </p>
           <p className="text-ink-700">
-            Trabalho com poucos tutores por semana justamente pra manter esse cuidado próximo.
-            Se você me contrata, você fala comigo — não com um app, não com uma central.
+            Trabalho com poucos tutores por semana pra manter esse cuidado próximo e
+            personalizado. Se você me contrata, você fala comigo — direto, sempre.
           </p>
           <p className="text-script text-3xl leading-none text-peach-700">Ana Clara</p>
           <ul className="mt-2 flex flex-wrap gap-2 text-sm">
-            <li className="flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 font-medium text-ink-700 shadow-sm"><Sparkles size={14} className="text-sky-600" /> Comportamento animal</li>
-            <li className="flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 font-medium text-ink-700 shadow-sm"><Heart size={14} className="text-peach-700" /> Primeiros socorros pet</li>
-            <li className="flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 font-medium text-ink-700 shadow-sm"><ShieldCheck size={14} className="text-sky-600" /> Identidade verificada</li>
+            <li className="flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 font-medium text-ink-700 shadow-sm"><Heart size={14} className="text-peach-700" /> Tutora de pets</li>
+            <li className="flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 font-medium text-ink-700 shadow-sm"><PawPrint size={14} className="text-sky-600" /> Cuidado individual</li>
+            <li className="flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 font-medium text-ink-700 shadow-sm"><MapPin size={14} className="text-sky-600" /> Vila Andrade — SP</li>
           </ul>
+
         </div>
       </div>
     </section>
@@ -391,11 +395,12 @@ function Services() {
       accent: "bg-peach-100 text-peach-700",
       items: [
         "Administração de medicamentos",
-        "Aplicação de insulina",
+        "Cuidados com pets com necessidades especiais",
         "Cuidado com pets idosos",
-        "Regas de plantas e casa",
-        "Relatório escrito ao final",
+        "Passeios na área pet ou na rua",
+        "Relatório com fotos e vídeos ao final",
       ],
+
       featured: true,
     },
   ];
@@ -485,7 +490,7 @@ function Differentiators() {
     { icon: Bell, title: "Comunicação em tempo real", text: "Nada de esperar o fim do dia pra saber do seu pet.", span: "" },
     { icon: Camera, title: "Fotos e vídeos em toda visita", text: "Sem exceção.", span: "" },
     { icon: PawPrint, title: "Cuidado individualizado", text: "Poucos tutores por semana.", span: "" },
-    { icon: ShieldCheck, title: "Segurança total", text: "Identidade verificada, referências e contrato simples.", span: "md:col-span-2" },
+    { icon: ShieldCheck, title: "Confiança e transparência", text: "Combinado claro, referências e contrato simples desde a primeira conversa.", span: "md:col-span-2" },
   ];
   return (
     <section aria-labelledby="dif-title" className="py-20 sm:py-28">
@@ -521,9 +526,10 @@ function Differentiators() {
 function Testimonials() {
   const items = [
     { name: "Marina R.", where: "Vila Andrade", pet: "Théo, golden", text: "Viajei 10 dias tranquila pela primeira vez. A Ana mandava vídeo do Théo na janela e eu já sabia que estava tudo bem." },
-    { name: "Ricardo T.", where: "Panamby", pet: "Luna, siamesa", text: "Meu gato é ansioso e não aceita hotel. A Ana entrou na casa dele com um respeito que eu nunca vi. Virou parte da família." },
-    { name: "Cláudia M.", where: "Morumbi", pet: "Bidu, dachshund idoso", text: "Ela aplica insulina no meu Bidu duas vezes ao dia com foto de cada aplicação. Confio de olhos fechados." },
+    { name: "Ricardo T.", where: "Vila Andrade", pet: "Luna, siamesa", text: "Meu gato é ansioso e não aceita hotel. A Ana entrou na casa dele com um respeito que eu nunca vi. Virou parte da família." },
+    { name: "Cláudia M.", where: "Vila Andrade", pet: "Bidu, dachshund idoso", text: "Ela cuida da medicação do meu Bidu com foto de cada aplicação. Confio de olhos fechados." },
   ];
+
   return (
     <section id="depoimentos" aria-labelledby="dep-title" className="bg-sky-50 py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -561,28 +567,30 @@ function Testimonials() {
 }
 
 function Coverage() {
-  const bairros = ["Vila Andrade", "Morumbi", "Panamby", "Real Parque", "Jardim Ampére", "Jardim Colombo", "Vila Suzana", "Paraisópolis (região)"];
   return (
     <section aria-labelledby="cob-title" className="py-20 sm:py-28">
-      <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
+      <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
         <SectionEyebrow>Cobertura</SectionEyebrow>
         <h2 id="cob-title" className="mt-4 text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold">
-          Atendo com carinho em toda a região
+          Atendo exclusivamente a Vila Andrade
         </h2>
+        <p className="mt-4 text-ink-700">
+          Trabalho só no bairro pra conseguir chegar rápido, manter a agenda enxuta e
+          oferecer um cuidado realmente próximo a cada pet e a cada tutor.
+        </p>
         <ul className="mt-8 flex flex-wrap justify-center gap-2.5">
-          {bairros.map((b) => (
-            <li key={b} className="flex items-center gap-1.5 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-ink-700 shadow-sm">
-              <MapPin size={14} className="text-sky-600" /> {b}
-            </li>
-          ))}
+          <li className="flex items-center gap-1.5 rounded-full border border-border bg-card px-5 py-2.5 text-base font-semibold text-ink-900 shadow-sm">
+            <MapPin size={16} className="text-sky-600" /> Vila Andrade — São Paulo, SP
+          </li>
         </ul>
         <div className="mt-10">
-          <CtaGhost>Ver se atende meu bairro</CtaGhost>
+          <CtaGhost>Confirmar disponibilidade na Vila Andrade</CtaGhost>
         </div>
       </div>
     </section>
   );
 }
+
 
 function Faq() {
   const [open, setOpen] = useState<number | null>(0);
@@ -673,15 +681,15 @@ function Footer() {
             Ana Clara
           </div>
           <p className="mt-3 text-sm text-ink-700">
-            Cuidado com carinho em Vila Andrade e região. Pet Sitter profissional, com formação
-            em comportamento animal e primeiros socorros pet.
+            Cuidados personalizados para seu pet, no conforto da sua casa. Atendimento
+            exclusivo em Vila Andrade — São Paulo.
           </p>
         </div>
         <div>
           <h3 className="font-heading font-semibold text-ink-900">Contato</h3>
           <ul className="mt-3 space-y-2 text-sm text-ink-700">
-            <li className="flex items-center gap-2"><Phone size={14} className="text-sky-600" /> <a href={WHATSAPP_URL} target="_blank" rel="noopener" className="hover:text-sky-800">(11) 9XXXX-XXXX</a></li>
-            <li className="flex items-center gap-2"><Instagram size={14} className="text-sky-600" /> <a href="https://instagram.com/anaclara.petsitter" target="_blank" rel="noopener" className="hover:text-sky-800">@anaclara.petsitter</a></li>
+            <li className="flex items-center gap-2"><Phone size={14} className="text-sky-600" /> <a href={WHATSAPP_URL} target="_blank" rel="noopener" className="hover:text-sky-800">(11) 99656-0051</a></li>
+            <li className="flex items-center gap-2"><MessageCircle size={14} className="text-sky-600" /> <a href={WHATSAPP_URL} target="_blank" rel="noopener" className="hover:text-sky-800">Agendar pelo WhatsApp</a></li>
             <li className="flex items-center gap-2"><MapPin size={14} className="text-sky-600" /> Vila Andrade, São Paulo — SP</li>
             <li className="flex items-center gap-2"><Clock size={14} className="text-sky-600" /> Seg–Sáb, 8h às 20h</li>
           </ul>
@@ -689,22 +697,21 @@ function Footer() {
         <div>
           <h3 className="font-heading font-semibold text-ink-900">Serviços</h3>
           <ul className="mt-3 space-y-2 text-sm text-ink-700">
-            <li>Pet Sitter para cães</li>
-            <li>Pet Sitter para gatos</li>
-            <li>Passeios em Vila Andrade</li>
-            <li>Administração de medicação</li>
-            <li>Cuidado com pets idosos</li>
+            <li>Visitas diárias</li>
+            <li>Passeios e brincadeiras</li>
+            <li>Cuidados com a saúde</li>
+            <li>Administração de medicamentos</li>
+            <li>Acompanhamento e relatórios</li>
           </ul>
         </div>
         <div>
-          <h3 className="font-heading font-semibold text-ink-900">Bairros atendidos</h3>
+          <h3 className="font-heading font-semibold text-ink-900">Área de atendimento</h3>
           <ul className="mt-3 space-y-2 text-sm text-ink-700">
-            <li>Vila Andrade · Morumbi</li>
-            <li>Panamby · Real Parque</li>
-            <li>Jardim Ampére · Jardim Colombo</li>
-            <li>Vila Suzana</li>
+            <li className="flex items-center gap-2"><MapPin size={14} className="text-sky-600" /> Vila Andrade</li>
+            <li className="text-ink-500">Atendimento exclusivo no bairro para manter o cuidado próximo.</li>
           </ul>
         </div>
+
       </div>
       <div className="border-t border-border/60">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-6 text-xs text-ink-500 sm:flex-row sm:px-6">
