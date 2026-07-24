@@ -46,7 +46,7 @@ const faqData = [
   { q: "E se acontecer uma emergência?", a: "Aviso você imediatamente e levo o pet ao veterinário de confiança que combinamos antes das visitas começarem." },
   { q: "Como recebo as atualizações?", a: "Por WhatsApp, com fotos e vídeos em cada visita, mais um resumo escrito ao final." },
   { q: "Você aplica medicação?", a: "Sim — administração de medicamentos via oral, tópica e colírio, além de cuidados com pets com necessidades especiais. Cada aplicação vai registrada em foto." },
-  { q: "Quanto custa?", a: "O valor depende do número de visitas, tempo e do seu bairro. Me chame no WhatsApp que envio o orçamento em minutos." },
+  { q: "Quanto custa?", a: "O valor depende do número de visitas e do tempo de cada uma. Me chame no WhatsApp que envio o orçamento em minutos." },
   { q: "E se meu pet não gostar de você?", a: "A primeira conversa é justamente pra isso. Se não rolar química, sem problema — não contratamos." },
 ];
 
