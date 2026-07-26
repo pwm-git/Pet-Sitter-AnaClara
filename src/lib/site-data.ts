@@ -1,8 +1,8 @@
 export const HERO_IMAGE = "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=1200&q=80";
 
 export const WHATSAPP_URL =
-  "https://wa.me/5511996560051?text=" +
-  encodeURIComponent("Oi Ana! Vim pela página e queria agendar uma visita para meu pet.");
+  "https://wa.me/5511999999991?text=" +
+  encodeURIComponent("Oi Maria! Vim pela página e queria agendar uma visita para meu pet.");
 
 export const faqData = [
   {
@@ -42,12 +42,12 @@ export const faqData = [
 export const localBusinessJsonLd = {
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "AnimalShelter"],
-  "@id": "#ana-clara-pet-sitter",
-  name: "Ana Clara Pet Sitter",
+  "@id": "#maria-pet-sitter",
+  name: "Maria Pet Sitter",
   description:
     "Pet Sitter em Vila Andrade. Cuidados personalizados para cães e gatos no conforto da sua casa: visitas diárias, passeios, alimentação, medicação e relatórios com fotos e vídeos a cada visita.",
   image: HERO_IMAGE,
-  telephone: "+55-11-99656-0051",
+  telephone: "+55-11-99999-9991",
   priceRange: "$$",
   areaServed: [{ "@type": "City", name: "São Paulo" }, "Vila Andrade"],
   address: {

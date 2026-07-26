@@ -8,7 +8,7 @@ export function About() {
         <div className="flex flex-col gap-5">
           <SectionEyebrow>Sobre</SectionEyebrow>
           <h2 id="sobre-title" className="text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold">
-            Oi, eu sou a Ana Clara
+            Oi, eu sou a Maria
           </h2>
           <p className="text-ink-700">
             Sou tutora de pets e apaixonada por animais desde sempre. Transformei esse amor em
@@ -24,7 +24,7 @@ export function About() {
             Trabalho com poucos tutores por semana pra manter esse cuidado próximo e personalizado.
             Se você me contrata, você fala comigo — direto, sempre.
           </p>
-          <p className="text-script text-3xl leading-none text-peach-700">Ana Clara</p>
+          <p className="text-script text-3xl leading-none text-peach-700">Maria</p>
           <ul className="mt-2 flex flex-wrap gap-2 text-sm">
             <li className="flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 font-medium text-ink-700 shadow-sm">
               <Heart size={14} className="text-peach-700" /> Tutora de pets

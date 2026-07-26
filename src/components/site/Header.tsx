@@ -10,7 +10,7 @@ export function Header() {
             <PawPrint size={18} />
           </span>
           <span>
-            Ana Clara <span className="hidden text-ink-500 sm:inline">· Pet Sitter</span>
+            Maria <span className="hidden text-ink-500 sm:inline">· Pet Sitter</span>
           </span>
         </a>
         <nav
