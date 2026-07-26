@@ -20,7 +20,7 @@ export function Hero() {
           </p>
           <div className="flex flex-wrap gap-3">
             <CtaPrimary>Agendar uma visita</CtaPrimary>
-            <CtaGhost>Falar com a Ana Clara</CtaGhost>
+            <CtaGhost>Falar comigo</CtaGhost>
           </div>
           <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-2 text-sm text-ink-700">
             <li className="flex items-center gap-1.5">
@@ -39,7 +39,7 @@ export function Hero() {
           <div className="blob relative mx-auto aspect-square w-full max-w-md overflow-hidden shadow-lift">
             <img
               src={HERO_IMAGE}
-              alt="Ana Clara sorrindo enquanto faz carinho em um cachorro golden"
+              alt="Maria sorrindo enquanto faz carinho em um cachorro golden"
               width={600}
               height={600}
               fetchPriority="high"

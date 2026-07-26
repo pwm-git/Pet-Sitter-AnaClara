@@ -19,14 +19,14 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Pet Sitter em Vila Andrade | Ana Clara — Cuidados no Conforto da Sua Casa" },
+      { title: "Pet Sitter em Vila Andrade | Maria — Cuidados no Conforto da Sua Casa" },
       {
         name: "description",
         content:
           "Pet Sitter em Vila Andrade: cuidados personalizados para seu pet no conforto da sua casa. Visitas diárias, passeios, medicação e relatórios com fotos e vídeos. Agende no WhatsApp.",
       },
       { name: "robots", content: "index, follow" },
-      { property: "og:title", content: "Pet Sitter em Vila Andrade | Ana Clara" },
+      { property: "og:title", content: "Pet Sitter em Vila Andrade | Maria" },
       {
         property: "og:description",
         content:
@@ -37,10 +37,10 @@ export const Route = createFileRoute("/")({
       { property: "og:image", content: HERO_IMAGE },
       {
         property: "og:image:alt",
-        content: "Ana Clara sorrindo enquanto faz carinho em um cachorro golden",
+        content: "Maria sorrindo enquanto faz carinho em um cachorro golden",
       },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Pet Sitter em Vila Andrade | Ana Clara" },
+      { name: "twitter:title", content: "Pet Sitter em Vila Andrade | Maria" },
       {
         name: "twitter:description",
         content: "Visitas, passeios, alimentação e medicação com fotos e vídeos em tempo real.",

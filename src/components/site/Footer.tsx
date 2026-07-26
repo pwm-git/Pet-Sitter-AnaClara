@@ -10,7 +10,7 @@ export function Footer() {
             <span className="grid h-9 w-9 place-items-center rounded-full bg-peach-100 text-peach-700">
               <PawPrint size={18} />
             </span>
-            Ana Clara
+            Maria
           </div>
           <p className="mt-3 text-sm text-ink-700">
             Cuidados personalizados para seu pet, no conforto da sua casa. Atendimento exclusivo em
@@ -23,7 +23,7 @@ export function Footer() {
             <li className="flex items-center gap-2">
               <Phone size={14} className="text-sky-600" />{" "}
               <a href={WHATSAPP_URL} target="_blank" rel="noopener" className="hover:text-sky-800">
-                (11) 99656-0051
+                (11) 99999-99991
               </a>
             </li>
             <li className="flex items-center gap-2">

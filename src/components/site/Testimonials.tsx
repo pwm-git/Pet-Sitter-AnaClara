@@ -6,13 +6,13 @@ const items = [
     name: "Marina R.",
     where: "Vila Andrade",
     pet: "Théo, golden",
-    text: "Viajei 10 dias tranquila pela primeira vez. A Ana mandava vídeo do Théo na janela e eu já sabia que estava tudo bem.",
+    text: "Viajei 10 dias tranquila pela primeira vez. A Maria mandava vídeo do Théo na janela e eu já sabia que estava tudo bem.",
   },
   {
     name: "Ricardo T.",
     where: "Vila Andrade",
     pet: "Luna, siamesa",
-    text: "Meu gato é ansioso e não aceita hotel. A Ana entrou na casa dele com um respeito que eu nunca vi. Virou parte da família.",
+    text: "Meu gato é ansioso e não aceita hotel. A Maria entrou na casa dele com um respeito que eu nunca vi. Virou parte da família.",
   },
   {
     name: "Cláudia M.",
